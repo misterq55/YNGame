@@ -63,7 +63,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 71,
-											"width": 500.6748046875,
+											"width": 530.28662109375,
 											"height": 13,
 											"text": "IYNController"
 										},
@@ -101,7 +101,7 @@
 									"parentStyle": true,
 									"left": 72,
 									"top": 64,
-									"width": 510.6748046875,
+									"width": 540.28662109375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGVo/jSWu9teBw="
@@ -129,7 +129,7 @@
 									"parentStyle": true,
 									"left": 72,
 									"top": 89,
-									"width": 510.6748046875,
+									"width": 540.28662109375,
 									"height": 10
 								},
 								{
@@ -155,7 +155,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 104,
-											"width": 500.6748046875,
+											"width": 530.28662109375,
 											"height": 13,
 											"text": "+RollYut(): int32",
 											"horizontalAlignment": 0
@@ -173,7 +173,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 119,
-											"width": 500.6748046875,
+											"width": 530.28662109375,
 											"height": 13,
 											"text": "+Move(steps: int32)",
 											"horizontalAlignment": 0
@@ -191,7 +191,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 134,
-											"width": 500.6748046875,
+											"width": 530.28662109375,
 											"height": 13,
 											"text": "+ChangeTurn()",
 											"horizontalAlignment": 0
@@ -209,7 +209,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 149,
-											"width": 500.6748046875,
+											"width": 530.28662109375,
 											"height": 13,
 											"text": "+AdvanceStep()",
 											"horizontalAlignment": 0
@@ -227,9 +227,9 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 164,
-											"width": 500.6748046875,
+											"width": 530.28662109375,
 											"height": 13,
-											"text": "+AddComponent(name: FName, newComponent: TSharedPtr<ControllerComponent>)",
+											"text": "+AddComponent(name: FName, newComponent: TSharedPtr<FYNControllerComponentt>)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -245,7 +245,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 179,
-											"width": 500.6748046875,
+											"width": 530.28662109375,
 											"height": 13,
 											"text": "+RemoveComponent(name: FName)",
 											"horizontalAlignment": 0
@@ -255,7 +255,7 @@
 									"parentStyle": true,
 									"left": 72,
 									"top": 99,
-									"width": 510.6748046875,
+									"width": 540.28662109375,
 									"height": 98
 								},
 								{
@@ -298,7 +298,7 @@
 							"containerChangeable": true,
 							"left": 72,
 							"top": 64,
-							"width": 509.6748046875,
+							"width": 539.28662109375,
 							"height": 133,
 							"nameCompartment": {
 								"$ref": "AAAAAAGVo/jSWu9szVE="
@@ -359,7 +359,7 @@
 											"parentStyle": true,
 											"left": 85,
 											"top": 543,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "FYNLocalController"
 										},
@@ -397,7 +397,7 @@
 									"parentStyle": true,
 									"left": 80,
 									"top": 536,
-									"width": 510.6748046875,
+									"width": 536.6748046875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGVo/6MkSlYT4w="
@@ -425,7 +425,7 @@
 									"parentStyle": true,
 									"left": 80,
 									"top": 561,
-									"width": 510.6748046875,
+									"width": 536.6748046875,
 									"height": 10
 								},
 								{
@@ -451,7 +451,7 @@
 											"parentStyle": true,
 											"left": 85,
 											"top": 576,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+RollYut(): int32",
 											"horizontalAlignment": 0
@@ -469,7 +469,7 @@
 											"parentStyle": true,
 											"left": 85,
 											"top": 591,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+Move(steps: int32)",
 											"horizontalAlignment": 0
@@ -487,7 +487,7 @@
 											"parentStyle": true,
 											"left": 85,
 											"top": 606,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+ChangeTurn()",
 											"horizontalAlignment": 0
@@ -505,7 +505,7 @@
 											"parentStyle": true,
 											"left": 85,
 											"top": 621,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+AdvanceStep()",
 											"horizontalAlignment": 0
@@ -523,9 +523,9 @@
 											"parentStyle": true,
 											"left": 85,
 											"top": 636,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
-											"text": "+AddComponent(name: FName, newComponent: TSharedPtr<ControllerComponent>)",
+											"text": "+AddComponent(name: FName, newComponent: TSharedPtr<FYNControllerComponent>)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -541,7 +541,7 @@
 											"parentStyle": true,
 											"left": 85,
 											"top": 651,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+RemoveComponent(name: FName)",
 											"horizontalAlignment": 0
@@ -551,7 +551,7 @@
 									"parentStyle": true,
 									"left": 80,
 									"top": 571,
-									"width": 510.6748046875,
+									"width": 536.6748046875,
 									"height": 98
 								},
 								{
@@ -594,7 +594,7 @@
 							"containerChangeable": true,
 							"left": 80,
 							"top": 536,
-							"width": 509.6748046875,
+							"width": 535.6748046875,
 							"height": 133,
 							"nameCompartment": {
 								"$ref": "AAAAAAGVo/6MkSlXfOg="
@@ -634,7 +634,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 315,
+									"left": 328,
 									"top": 475,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -656,7 +656,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 300,
+									"left": 313,
 									"top": 476,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -678,7 +678,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 344,
+									"left": 357,
 									"top": 474,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -698,7 +698,7 @@
 								"$ref": "AAAAAAGVo/6MkSlWRhE="
 							},
 							"lineStyle": 1,
-							"points": "332:535;328:427",
+							"points": "345:535;341:427",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGVo/7AQCmC524="
@@ -739,7 +739,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 368,
+											"left": 400,
 											"top": 128,
 											"height": 13
 										},
@@ -751,9 +751,9 @@
 											},
 											"font": "Arial;13;1",
 											"parentStyle": true,
-											"left": 629,
+											"left": 645,
 											"top": 447,
-											"width": 500.6748046875,
+											"width": 511.7958984375,
 											"height": 13,
 											"text": "FYNNetController"
 										},
@@ -766,7 +766,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 368,
+											"left": 400,
 											"top": 128,
 											"width": 77.9365234375,
 											"height": 13,
@@ -781,7 +781,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 368,
+											"left": 400,
 											"top": 128,
 											"height": 13,
 											"horizontalAlignment": 1
@@ -789,9 +789,9 @@
 									],
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 624,
+									"left": 640,
 									"top": 440,
-									"width": 510.6748046875,
+									"width": 521.7958984375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGVo/9WICmVwRc="
@@ -817,9 +817,9 @@
 									},
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 624,
+									"left": 640,
 									"top": 465,
-									"width": 510.6748046875,
+									"width": 521.7958984375,
 									"height": 10
 								},
 								{
@@ -843,9 +843,9 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 629,
+											"left": 645,
 											"top": 480,
-											"width": 500.6748046875,
+											"width": 511.7958984375,
 											"height": 13,
 											"text": "+RollYut(): int32",
 											"horizontalAlignment": 0
@@ -861,9 +861,9 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 629,
+											"left": 645,
 											"top": 495,
-											"width": 500.6748046875,
+											"width": 511.7958984375,
 											"height": 13,
 											"text": "+Move(steps: int32)",
 											"horizontalAlignment": 0
@@ -879,9 +879,9 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 629,
+											"left": 645,
 											"top": 510,
-											"width": 500.6748046875,
+											"width": 511.7958984375,
 											"height": 13,
 											"text": "+ChangeTurn()",
 											"horizontalAlignment": 0
@@ -897,9 +897,9 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 629,
+											"left": 645,
 											"top": 525,
-											"width": 500.6748046875,
+											"width": 511.7958984375,
 											"height": 13,
 											"text": "+AdvanceStep()",
 											"horizontalAlignment": 0
@@ -915,9 +915,9 @@
 											},
 											"font": "Arial;13;0",
 											"parentStyle": true,
-											"left": 629,
+											"left": 645,
 											"top": 540,
-											"width": 500.6748046875,
+											"width": 511.7958984375,
 											"height": 13,
 											"text": "+AddComponent(name: FName, newComponent: TSharedPtr<ControllerComponent>)",
 											"horizontalAlignment": 0
@@ -925,9 +925,9 @@
 									],
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 624,
+									"left": 640,
 									"top": 475,
-									"width": 510.6748046875,
+									"width": 521.7958984375,
 									"height": 83
 								},
 								{
@@ -942,7 +942,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 216,
+									"left": 232,
 									"top": 112,
 									"width": 10,
 									"height": 10
@@ -959,7 +959,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": true,
-									"left": 216,
+									"left": 232,
 									"top": 112,
 									"width": 10,
 									"height": 10
@@ -968,9 +968,9 @@
 							"font": "Arial;13;0",
 							"parentStyle": false,
 							"containerChangeable": true,
-							"left": 624,
+							"left": 640,
 							"top": 440,
-							"width": 509.6748046875,
+							"width": 520.7958984375,
 							"height": 118,
 							"nameCompartment": {
 								"$ref": "AAAAAAGVo/9WICmUWh8="
@@ -1010,8 +1010,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 613,
-									"top": 438,
+									"left": 635,
+									"top": 439,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -1032,7 +1032,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 609,
+									"left": 631,
 									"top": 453,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1054,8 +1054,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 620,
-									"top": 409,
+									"left": 642,
+									"top": 410,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -1074,7 +1074,7 @@
 								"$ref": "AAAAAAGVo/9WICmTWf0="
 							},
 							"lineStyle": 1,
-							"points": "651:439;583:421",
+							"points": "669:439;609:423",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGVo/+aISnACQk="
@@ -1129,7 +1129,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 287,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "FYNBaseController"
 										},
@@ -1167,7 +1167,7 @@
 									"parentStyle": true,
 									"left": 72,
 									"top": 280,
-									"width": 510.6748046875,
+									"width": 536.6748046875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGVpADRuSnSyC0="
@@ -1205,7 +1205,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 310,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "#ControllerComponent: TMap<FName, TWeakPtr<FYNControllerComponent>>",
 											"horizontalAlignment": 0
@@ -1215,7 +1215,7 @@
 									"parentStyle": true,
 									"left": 72,
 									"top": 305,
-									"width": 510.6748046875,
+									"width": 536.6748046875,
 									"height": 23
 								},
 								{
@@ -1241,7 +1241,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 333,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+RollYut(): int32",
 											"horizontalAlignment": 0
@@ -1259,7 +1259,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 348,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+Move(steps: int32)",
 											"horizontalAlignment": 0
@@ -1277,7 +1277,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 363,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+ChangeTurn()",
 											"horizontalAlignment": 0
@@ -1295,7 +1295,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 378,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+AdvanceStep()",
 											"horizontalAlignment": 0
@@ -1313,9 +1313,9 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 393,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
-											"text": "+AddComponent(name: FName, newComponent: TSharedPtr<ControllerComponent>)",
+											"text": "+AddComponent(name: FName, newComponent: TSharedPtr<FYNControllerComponent>)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1331,7 +1331,7 @@
 											"parentStyle": true,
 											"left": 77,
 											"top": 408,
-											"width": 500.6748046875,
+											"width": 526.6748046875,
 											"height": 13,
 											"text": "+RemoveComponent(name: FName)",
 											"horizontalAlignment": 0
@@ -1341,7 +1341,7 @@
 									"parentStyle": true,
 									"left": 72,
 									"top": 328,
-									"width": 510.6748046875,
+									"width": 536.6748046875,
 									"height": 98
 								},
 								{
@@ -1384,7 +1384,7 @@
 							"containerChangeable": true,
 							"left": 72,
 							"top": 280,
-							"width": 509.6748046875,
+							"width": 535.6748046875,
 							"height": 146,
 							"nameCompartment": {
 								"$ref": "AAAAAAGVpADRuSnRjYc="
@@ -1424,7 +1424,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 311,
+									"left": 325,
 									"top": 231,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1446,7 +1446,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 296,
+									"left": 310,
 									"top": 231,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1468,7 +1468,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 340,
+									"left": 354,
 									"top": 232,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -1488,7 +1488,7 @@
 								"$ref": "AAAAAAGVpADRuSnQsGc="
 							},
 							"lineStyle": 1,
-							"points": "326:279;326:198",
+							"points": "340:279;340:198",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGVpAETkCn97Yw="
@@ -1558,7 +1558,7 @@
 											"parentStyle": true,
 											"left": 1536,
 											"top": 208,
-											"width": 73.67724609375,
+											"width": 77.9365234375,
 											"height": 13,
 											"text": "(from Model)"
 										},
@@ -1729,7 +1729,7 @@
 											"parentStyle": true,
 											"left": 1189,
 											"top": 335,
-											"width": 96.34814453125,
+											"width": 97.52880859375,
 											"height": 13,
 											"text": "FYNNetHandler"
 										},
@@ -1744,7 +1744,7 @@
 											"parentStyle": true,
 											"left": 1120,
 											"top": -112,
-											"width": 73.67724609375,
+											"width": 77.9365234375,
 											"height": 13,
 											"text": "(from Model)"
 										},
@@ -1767,7 +1767,7 @@
 									"parentStyle": true,
 									"left": 1184,
 									"top": 328,
-									"width": 106.34814453125,
+									"width": 107.52880859375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGVrXd2NjyO/QI="
@@ -1795,7 +1795,7 @@
 									"parentStyle": true,
 									"left": 1184,
 									"top": 353,
-									"width": 106.34814453125,
+									"width": 107.52880859375,
 									"height": 10
 								},
 								{
@@ -1811,7 +1811,7 @@
 									"parentStyle": true,
 									"left": 1184,
 									"top": 363,
-									"width": 106.34814453125,
+									"width": 107.52880859375,
 									"height": 10
 								},
 								{
@@ -1854,7 +1854,7 @@
 							"containerChangeable": true,
 							"left": 1184,
 							"top": 328,
-							"width": 105.34814453125,
+							"width": 106.52880859375,
 							"height": 45,
 							"nameCompartment": {
 								"$ref": "AAAAAAGVrXd2NjyNgbY="
@@ -1915,7 +1915,7 @@
 											"parentStyle": true,
 											"left": 1173,
 											"top": 551,
-											"width": 93.4599609375,
+											"width": 94.21533203125,
 											"height": 13,
 											"text": "FYNAIManager"
 										},
@@ -1930,7 +1930,7 @@
 											"parentStyle": true,
 											"left": 1024,
 											"top": 112,
-											"width": 73.67724609375,
+											"width": 77.9365234375,
 											"height": 13,
 											"text": "(from Model)"
 										},
@@ -1953,7 +1953,7 @@
 									"parentStyle": true,
 									"left": 1168,
 									"top": 544,
-									"width": 103.4599609375,
+									"width": 104.21533203125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGVrXfXxj4uoVs="
@@ -1981,7 +1981,7 @@
 									"parentStyle": true,
 									"left": 1168,
 									"top": 569,
-									"width": 103.4599609375,
+									"width": 104.21533203125,
 									"height": 10
 								},
 								{
@@ -1997,7 +1997,7 @@
 									"parentStyle": true,
 									"left": 1168,
 									"top": 579,
-									"width": 103.4599609375,
+									"width": 104.21533203125,
 									"height": 10
 								},
 								{
@@ -2040,7 +2040,7 @@
 							"containerChangeable": true,
 							"left": 1168,
 							"top": 544,
-							"width": 102.4599609375,
+							"width": 103.21533203125,
 							"height": 45,
 							"nameCompartment": {
 								"$ref": "AAAAAAGVrXfXxj4t4M4="
@@ -2116,7 +2116,7 @@
 											"parentStyle": true,
 											"left": 1024,
 											"top": -48,
-											"width": 73.67724609375,
+											"width": 77.9365234375,
 											"height": 13,
 											"text": "(from Model)"
 										},
@@ -2364,7 +2364,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1181,
+									"left": 1182,
 									"top": 232,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2386,7 +2386,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1167,
+									"left": 1168,
 									"top": 237,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2408,7 +2408,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1210,
+									"left": 1211,
 									"top": 223,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -2428,7 +2428,7 @@
 								"$ref": "AAAAAAGVrXd2NjyMes8="
 							},
 							"lineStyle": 1,
-							"points": "1228:327;1165:142",
+							"points": "1229:327;1165:142",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGVrXu8ZFjUIFI="
@@ -2559,9 +2559,9 @@
 									},
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 817,
-									"top": 219,
-									"width": 29.275390625,
+									"left": 825,
+									"top": 218,
+									"width": 29.47216796875,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2583,8 +2583,8 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 835,
-									"top": 233,
+									"left": 843,
+									"top": 232,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2605,8 +2605,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 822,
-									"top": 190,
+									"left": 830,
+									"top": 189,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2627,7 +2627,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1051,
+									"left": 1052,
 									"top": 157,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -2649,8 +2649,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1052,
-									"top": 170,
+									"left": 1053,
+									"top": 171,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -2671,7 +2671,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 1047,
+									"left": 1048,
 									"top": 129,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -2693,8 +2693,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 612,
-									"top": 281,
+									"left": 626,
+									"top": 280,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -2714,8 +2714,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 617,
-									"top": 293,
+									"left": 632,
+									"top": 292,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -2735,8 +2735,8 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"parentStyle": false,
-									"left": 600,
-									"top": 256,
+									"left": 614,
+									"top": 254,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -2784,7 +2784,7 @@
 								"$ref": "AAAAAAGVrXtwTVX0bgM="
 							},
 							"lineStyle": 1,
-							"points": "1072:142;583:280",
+							"points": "1073:142;597:279",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGVrXyvY1zRvRg="
@@ -2909,7 +2909,7 @@
 										"$ref": "AAAAAAGVrX1zLV42RV4="
 									},
 									"name": "newComponent",
-									"type": "TSharedPtr<ControllerComponent>"
+									"type": "TSharedPtr<FYNControllerComponentt>"
 								}
 							]
 						},
@@ -3036,7 +3036,7 @@
 										"$ref": "AAAAAAGVrX4rlWF9ls4="
 									},
 									"name": "newComponent",
-									"type": "TSharedPtr<ControllerComponent>"
+									"type": "TSharedPtr<FYNControllerComponent>"
 								}
 							]
 						},
@@ -3281,7 +3281,7 @@
 										"$ref": "AAAAAAGVrX4FZmC2wpQ="
 									},
 									"name": "newComponent",
-									"type": "TSharedPtr<ControllerComponent>"
+									"type": "TSharedPtr<FYNControllerComponent>"
 								}
 							]
 						},

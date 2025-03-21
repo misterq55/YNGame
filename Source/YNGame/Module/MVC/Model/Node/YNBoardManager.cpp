@@ -21,7 +21,8 @@ void FYNBoardManager::AddNode(const FVector& newPos)
 FYNPathResult FYNBoardManager::FindPath(const int32 startNodeId, const int32 steps)
 {
 	// TODO
-	return FYNPathResult();
+	FYNPathResult pathResult;
+	return MoveTemp(pathResult);
 }
 
 FYNNodeContext& FYNBoardManager::FindNodeContext(const int32 nodeId)

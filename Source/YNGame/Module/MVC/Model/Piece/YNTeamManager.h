@@ -1,7 +1,8 @@
 ﻿#pragma once
-#include "YNNodeModel.h"
 
 class FYNPieceModel;
+class FYNTeamModel;
+class FYNTurn;
 struct FYNPathResult;
 struct FYNPieceContext;
 
@@ -12,11 +13,13 @@ public:
 	~FYNTeamManager();
 
 public:
-	void Move(const FYNPathResult &path);
-	void AddPiece(const int32 teamIndex);
-	int32 FindStartNodeId() const;
-	FYNPieceContext& GetPieceContext(const int32 pieceIndex) const;
+	void Move(const int32 currentTurnTeamId, const int32 currentTurnPieceId, const FYNPathResult &path);
+	void AddPiece(const int32 teamIndex, const int32 pieceCount);
+	void AddTeam(const int32 teamIndex);
+	int32 FindStartNodeId(const int32 currentTurnTeamId, const int32 currentTurnPieceId) const;
+	FYNPieceContext& GetPieceContext(const int32 teamId, const int32 pieceIndex) const;
 
 private:
-	TSharedPtr<FYNPieceModel> findCurrentPiece(const int32 teamIndex) const;
+	int IndexCounter = 0;
+	TMap<int32, TSharedPtr<FYNTeamModel>> TeamModels;
 };

@@ -15,7 +15,7 @@ void FYNBoardManager::AddNode(const FVector& newPos)
 {
 	TSharedPtr<FYNNodeModel> newNodeModel = MakeShareable(new FYNNodeModel());
 	newNodeModel->SetPos(newPos);
-	NodeModels.Emplace(Index++, newNodeModel);
+	NodeModels[IndexCounter++] = newNodeModel;
 }
 
 FYNPathResult FYNBoardManager::FindPath(const int32 startNodeId, const int32 steps)

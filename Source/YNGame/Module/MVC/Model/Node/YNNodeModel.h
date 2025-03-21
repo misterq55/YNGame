@@ -12,6 +12,7 @@ public:
 public:
 	void SetPos(const FVector& newPos);
 	FYNNodeContext& GetNodeContext();
+	void UpdateNodeView();
 
 private:
 	int32 Id;

@@ -17,5 +17,5 @@ public:
 	
 private:
 	TMap<int32, TSharedPtr<FYNNodeModel>> NodeModels;
-	int Index = 0;
+	int IndexCounter = 0;
 };

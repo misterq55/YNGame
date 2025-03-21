@@ -1,6 +1,8 @@
 ﻿#include "YNModel.h"
 #include "YNGame/YNGameDefine.h"
 #include "Node/YNBoardManager.h"
+#include "Piece/YNTeamManager.h"
+#include "Turn/YNTurn.h"
 
 FYNModel::FYNModel()
 {
@@ -13,10 +15,13 @@ FYNModel::~FYNModel()
 void FYNModel::Initialize()
 {
 	BoardMgr = MakeShareable(new FYNBoardManager());
+	TeamMgr = MakeShareable(new FYNTeamManager());
+	CurrentTurn= MakeShareable(new FYNTurn);
 }
 
 void FYNModel::StartPlay()
 {
+	// TODO 초기화
 }
 
 void FYNModel::AddNode(const FVector& newPos)
@@ -27,20 +32,51 @@ void FYNModel::AddNode(const FVector& newPos)
 	}
 }
 
-void FYNModel::AddTeams(const int32 teamCount)
+void FYNModel::AddTeams(const int32 teamCount, const int32 pieceCount)
 {
+	if (TeamMgr.IsValid())
+	{
+		for (int32 i = 0; i < teamCount; ++i)
+		{
+			TeamMgr->AddTeam(i);
+			TeamMgr->AddPiece(i, pieceCount);
+		}
+	}
 }
 
 void FYNModel::AdvanceStep()
 {
+	// TODO 턴 관련 처리
 }
 
 void FYNModel::ChangeTurn()
 {
+	// TODO 턴 관련 처리
 }
 
 void FYNModel::Move(const int32 steps)
 {
+	if (!TeamMgr.IsValid())
+	{
+		return;
+	}
+	
+	if (!BoardMgr.IsValid())
+	{
+		return;
+	}
+
+	if (!CurrentTurn.IsValid())
+	{
+		return;
+	}
+
+	const int32 currentTurnTeamId = CurrentTurn->GetTurnOwnerTeamId();
+	const int32 currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
+	const int32 startNodeId = TeamMgr->FindStartNodeId(currentTurnTeamId, currentPieceId);
+	const FYNPathResult pathResult = BoardMgr->FindPath(startNodeId, steps);
+	
+	TeamMgr->Move(currentTurnTeamId, currentPieceId, pathResult);
 }
 
 bool FYNModel::IsRepeat()
@@ -59,8 +95,13 @@ FYNNodeContext& FYNModel::FindNodeContext(const int32 nodeId)
 	return BoardMgr->FindNodeContext(nodeId);
 }
 
-static FYNPieceContext tempPieceContext;
-FYNPieceContext& FYNModel::FindPieceContext(const int32 pieceId)
+FYNPieceContext& FYNModel::FindPieceContext(const int32 teamId, const int32 pieceId)
 {
-	return tempPieceContext;
+	if (!TeamMgr.IsValid())
+	{
+		static FYNPieceContext nullPieceContext;
+		return nullPieceContext;
+	}
+
+	return TeamMgr->GetPieceContext(teamId, pieceId);
 }

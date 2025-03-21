@@ -23,3 +23,7 @@ FYNNodeContext& FYNNodeModel::GetNodeContext()
 {
 	return NodeContext;
 }
+
+void FYNNodeModel::UpdateNodeView()
+{
+}

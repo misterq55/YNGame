@@ -44,6 +44,11 @@ void FYNModel::AddTeams(const int32 teamCount, const int32 pieceCount)
 	}
 }
 
+void FYNModel::AddTeam()
+{
+	
+}
+
 void FYNModel::AdvanceStep()
 {
 	// TODO 턴 관련 처리

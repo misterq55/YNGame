@@ -1,5 +1,8 @@
 #pragma once
 
+class FYNPieceModel;
+class FYNNodeModel;
+
 enum class E_YNNestingState : uint8
 {
 	None,
@@ -31,4 +34,10 @@ struct FYNPathResult
 	TArray<int32> Path;
 	bool bIsBlocked = false;
 	bool bReachedStep = false;
+};
+
+struct FYNMoveContext
+{
+	TSharedPtr<FYNPieceModel> PieceModel = nullptr;
+	TArray<TSharedPtr<FYNNodeModel>> NodeModels;
 };

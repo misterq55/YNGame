@@ -15,6 +15,7 @@ public:
 	void AddPiece();
 	int32 FindCurrentNodeId(const int32 currentPieceId) const;
 	FYNPieceContext& FindPieceContext(const int32 currentPieceId);
+	TSharedPtr<FYNPieceModel> FindPieceModel(const int32 currentPieceId) const;
 
 private:
 	int32 IndexCounter = 0;

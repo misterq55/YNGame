@@ -45,3 +45,13 @@ FYNPieceContext& FYNTeamModel::FindPieceContext(const int32 currentPieceId)
 	static FYNPieceContext nullPieceContext;
 	return nullPieceContext;
 }
+
+TSharedPtr<FYNPieceModel> FYNTeamModel::FindPieceModel(const int32 currentPieceId) const
+{
+	if (const TSharedPtr<FYNPieceModel>* foundPieceModel= PieceModels.Find(currentPieceId))
+	{
+		return *foundPieceModel;
+	}
+
+	return nullptr;
+}

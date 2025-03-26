@@ -1,4 +1,6 @@
 ﻿#include "YNModel.h"
+
+#include "MoveHandler/YNMoveHandler.h"
 #include "YNGame/YNGameDefine.h"
 #include "Node/YNBoardManager.h"
 #include "Piece/YNTeamManager.h"
@@ -80,8 +82,15 @@ void FYNModel::Move(const int32 steps)
 	const int32 currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
 	const int32 startNodeId = TeamMgr->FindStartNodeId(currentTurnTeamId, currentPieceId);
 	const FYNPathResult pathResult = BoardMgr->FindPath(startNodeId, steps);
+
+	TArray<TSharedPtr<FYNNodeModel>> nodeModels = BoardMgr->FindNodes(pathResult.Path);
+	TSharedPtr<FYNPieceModel> pieceModel = TeamMgr->FindPieceModel(currentTurnTeamId, currentPieceId);
+
+	FYNMoveContext moveContext;
+	moveContext.PieceModel = pieceModel;
+	moveContext.NodeModels = nodeModels;
 	
-	TeamMgr->Move(currentTurnTeamId, currentPieceId, pathResult);
+	FYNMoveHandler::MovePiece(MoveTemp(moveContext));
 }
 
 bool FYNModel::IsRepeat()

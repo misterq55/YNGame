@@ -36,3 +36,18 @@ FYNNodeContext& FYNBoardManager::FindNodeContext(const int32 nodeId)
 	static FYNNodeContext nullNodeContext;
 	return nullNodeContext;
 }
+
+TArray<TSharedPtr<FYNNodeModel>> FYNBoardManager::FindNodes(const TArray<int32>& nodeIds)
+{
+	TArray<TSharedPtr<FYNNodeModel>> nodeModels;
+
+	for (const int32 nodeId : nodeIds)
+	{
+		if (const TSharedPtr<FYNNodeModel>* foundNodeModel = NodeModels.Find(nodeId))
+		{
+			nodeModels.Emplace(*foundNodeModel);
+		}
+	}
+	
+	return MoveTemp(nodeModels);
+}

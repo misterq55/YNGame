@@ -13,12 +13,13 @@ public:
 	~FYNTeamManager();
 
 public:
-	void Move(const int32 currentTurnTeamId, const int32 currentTurnPieceId, const FYNPathResult &path);
-	void AddPiece(const int32 teamIndex, const int32 pieceCount);
+	void AddPiece(const int32 teamIndex, const int32 pieceCount)  const;
 	void AddTeam(const int32 teamIndex);
 	int32 FindStartNodeId(const int32 currentTurnTeamId, const int32 currentTurnPieceId) const;
 	FYNPieceContext& GetPieceContext(const int32 teamId, const int32 pieceIndex) const;
-
+	TSharedPtr<FYNPieceModel> FindPieceModel(const int32 teamId, const int32 pieceId) const;
+	TSharedPtr<FYNTeamModel> FindTeamModel(const int32 teamId) const;
+	
 private:
 	int IndexCounter = 0;
 	TMap<int32, TSharedPtr<FYNTeamModel>> TeamModels;

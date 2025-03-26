@@ -11,22 +11,17 @@ FYNTeamManager::~FYNTeamManager()
 {
 }
 
-void FYNTeamManager::Move(const int32 currentTurnTeamId, const int32 currentTurnPieceId, const FYNPathResult& path)
+void FYNTeamManager::AddPiece(const int32 teamIndex, const int32 pieceCount) const
 {
-	if (const TSharedPtr<FYNTeamModel>* foundTeamModel = TeamModels.Find(currentTurnTeamId))
+	const TSharedPtr<FYNTeamModel> teamModel = FindTeamModel(teamIndex);
+	if (!teamModel.IsValid())
 	{
-		return (*foundTeamModel)->Move(currentTurnPieceId, path);
+		return;
 	}
-}
-
-void FYNTeamManager::AddPiece(const int32 teamIndex, const int32 pieceCount)
-{
-	if (const TSharedPtr<FYNTeamModel>* foundTeamModel = TeamModels.Find(teamIndex))
+	
+	for (int32 i = 0; i < pieceCount; ++i)
 	{
-		for (int32 i = 0; i < pieceCount; ++i)
-		{
-			(*foundTeamModel)->AddPiece();
-		}
+		teamModel->AddPiece();
 	}
 }
 
@@ -38,9 +33,10 @@ void FYNTeamManager::AddTeam(const int32 teamIndex)
 
 int32 FYNTeamManager::FindStartNodeId(const int32 currentTurnTeamId, const int32 currentTurnPieceId) const
 {
-	if (const TSharedPtr<FYNTeamModel>* foundTeamModel = TeamModels.Find(currentTurnTeamId))
+	const TSharedPtr<FYNTeamModel> teamModel = FindTeamModel(currentTurnTeamId);
+	if (teamModel.IsValid())
 	{
-		return (*foundTeamModel)->FindCurrentNodeId(currentTurnPieceId);
+		return teamModel->FindCurrentNodeId(currentTurnPieceId);
 	}
 	
 	return 0;
@@ -48,11 +44,33 @@ int32 FYNTeamManager::FindStartNodeId(const int32 currentTurnTeamId, const int32
 
 FYNPieceContext& FYNTeamManager::GetPieceContext(const int32 teamId, const int32 pieceIndex) const
 {
-	if (const TSharedPtr<FYNTeamModel>* foundTeamModel = TeamModels.Find(teamId))
+	const TSharedPtr<FYNTeamModel> teamModel = FindTeamModel(teamId);
+	if (teamModel.IsValid())
 	{
-		return (*foundTeamModel)->FindPieceContext(pieceIndex);
+		return teamModel->FindPieceContext(pieceIndex);
 	}
 	
 	static FYNPieceContext nullPieceContext;
 	return nullPieceContext;
+}
+
+TSharedPtr<FYNPieceModel> FYNTeamManager::FindPieceModel(const int32 teamId, const int32 pieceId) const
+{
+	const TSharedPtr<FYNTeamModel> teamModel = FindTeamModel(teamId);
+	if (teamModel.IsValid())
+	{
+		return teamModel->FindPieceModel(pieceId);
+	}
+
+	return nullptr;
+}
+
+TSharedPtr<FYNTeamModel> FYNTeamManager::FindTeamModel(const int32 teamId) const
+{
+	if (const TSharedPtr<FYNTeamModel>* foundTeamModel = TeamModels.Find(teamId))
+	{
+		return *foundTeamModel;
+	}
+	
+	return nullptr;
 }

@@ -13,5 +13,7 @@ UCLASS()
 class YNGAME_API AYNGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	virtual void Tick(float DeltaSeconds) override;
 };

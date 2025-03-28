@@ -19,6 +19,8 @@ public:
 	int32 GetCurrentNodeId() const;
 	FYNPieceContext& GetPieceContext();
 	void UpdatePieceView();
+	void SetNodeId(const int32 nodeId);
+	void ChangeState(E_YNPieceState newState);
 
 private:
 	int32 Id;

@@ -2,16 +2,40 @@
 #include "YNGame/Module/MVC/Model/Piece/YNPieceModel.h"
 #include "YNGame/Module/MVC/Model/Node/YNNodeModel.h"
 
-void FYNMoveHandler::MovePiece(FYNMoveContext moveContext)
+void FYNMoveHandler::StartMove(FYNMoveContext moveContext)
 {
-	TSharedPtr<FYNPieceModel> piece = moveContext.PieceModel;
-	TArray<TSharedPtr<FYNNodeModel>> nodes = moveContext.NodeModels;
+	PieceModel = moveContext.PieceModel;
+	MovePath = moveContext.NodeModels;
+	PrevNodeModel = MovePath[0];
+}
 
-	for (TSharedPtr<FYNNodeModel> node : nodes)
+void FYNMoveHandler::Update(float deltaTime)
+{
+	if (!PieceModel.IsValid() || MovePath.IsEmpty())
 	{
-		if (!node.IsValid())
+		return;
+	}
+	
+	MoveTimer += deltaTime;
+	if (MoveTimer > 1.f)
+	{
+		MoveTimer = 0.f;
+
+		if (CurrentStepIndex < MovePath.Num())
 		{
-			continue;
+			TSharedPtr<FYNNodeModel>& nextModel = MovePath[CurrentStepIndex];
+
+			PieceModel->SetNodeId(nextModel->GetId());
+			PieceModel->ChangeState(E_YNPieceState::Moving);
+			
+			++CurrentStepIndex;
+		}
+		else
+		{
+			CurrentStepIndex = 1;
+			PieceModel->ChangeState(E_YNPieceState::Idle);
+			PieceModel = nullptr;
+			MovePath.Empty();
 		}
 	}
 }

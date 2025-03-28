@@ -3,3 +3,7 @@
 
 #include "YNGameModeBase.h"
 
+void AYNGameModeBase::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+}

@@ -16,4 +16,5 @@ class YNGAME_API AYNTestGameMode : public AYNGameModeBase
 
 public:
 	virtual void StartPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
 };

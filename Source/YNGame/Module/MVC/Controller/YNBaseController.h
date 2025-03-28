@@ -15,6 +15,7 @@ public:
 	virtual void AdvanceStep() override;
 	virtual void AddComponent(const FName& name, const TSharedPtr<FYNControllerComponent>& newComponent) override;
 	virtual void RemoveComponent(const FName& name) override;
+	virtual void Update(float deltaTimes) override;
 
 private:
 	TMap<FName, TSharedPtr<FYNControllerComponent>> ControllerComponents;

@@ -27,3 +27,8 @@ FYNNodeContext& FYNNodeModel::GetNodeContext()
 void FYNNodeModel::UpdateNodeView()
 {
 }
+
+int32 FYNNodeModel::GetId() const
+{
+	return Id;
+}

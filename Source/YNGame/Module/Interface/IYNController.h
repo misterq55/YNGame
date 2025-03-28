@@ -11,4 +11,5 @@ public:
 	virtual void AdvanceStep() = 0;
 	virtual void AddComponent(const FName& name, const TSharedPtr<FYNControllerComponent>& newComponent) = 0;
 	virtual void RemoveComponent(const FName& name) = 0;
+	virtual void Update(float deltaTimes) = 0;
 };

@@ -18,7 +18,8 @@ void FYNModel::Initialize()
 {
 	BoardMgr = MakeShareable(new FYNBoardManager());
 	TeamMgr = MakeShareable(new FYNTeamManager());
-	CurrentTurn= MakeShareable(new FYNTurn);
+	CurrentTurn = MakeShareable(new FYNTurn);
+	MoveHandler = MakeShareable(new FYNMoveHandler);
 }
 
 void FYNModel::StartPlay()
@@ -78,6 +79,11 @@ void FYNModel::Move(const int32 steps)
 		return;
 	}
 
+	if (!MoveHandler.IsValid())
+	{
+		return;
+	}
+
 	const int32 currentTurnTeamId = CurrentTurn->GetTurnOwnerTeamId();
 	const int32 currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
 	const int32 startNodeId = TeamMgr->FindStartNodeId(currentTurnTeamId, currentPieceId);
@@ -89,13 +95,23 @@ void FYNModel::Move(const int32 steps)
 	FYNMoveContext moveContext;
 	moveContext.PieceModel = pieceModel;
 	moveContext.NodeModels = nodeModels;
-	
-	FYNMoveHandler::MovePiece(MoveTemp(moveContext));
+
+	MoveHandler->StartMove(MoveTemp(moveContext));
 }
 
 bool FYNModel::IsRepeat()
 {
 	return false;
+}
+
+void FYNModel::Update(float deltaTimes)
+{
+	if (!MoveHandler.IsValid())
+	{
+		return;
+	}
+
+	MoveHandler->Update(deltaTimes);
 }
 
 FYNNodeContext& FYNModel::FindNodeContext(const int32 nodeId)

@@ -10,6 +10,13 @@ enum class E_YNNestingState : uint8
 	Nested,
 };
 
+enum class E_YNPieceState : uint8
+{
+	None,
+	Idle,
+	Moving,
+};
+
 enum class E_KTurnState : uint8
 {
 	None,
@@ -26,6 +33,7 @@ struct FYNPieceContext
 {
 	int32 CurrentNodeId = 0;
 	E_YNNestingState NestingState = E_YNNestingState::None;
+	E_YNPieceState PieceState = E_YNPieceState::None;
 	int32 NestingCount = 0;
 };
 

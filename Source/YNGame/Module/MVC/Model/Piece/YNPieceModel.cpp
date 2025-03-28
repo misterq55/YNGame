@@ -38,3 +38,13 @@ FYNPieceContext& FYNPieceModel::GetPieceContext()
 void FYNPieceModel::UpdatePieceView()
 {
 }
+
+void FYNPieceModel::SetNodeId(const int32 nodeId)
+{
+	PieceContext.CurrentNodeId = nodeId;
+}
+
+void FYNPieceModel::ChangeState(E_YNPieceState newState)
+{
+	PieceContext.PieceState = newState;
+}

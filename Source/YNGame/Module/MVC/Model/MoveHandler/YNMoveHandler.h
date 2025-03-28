@@ -7,5 +7,13 @@ class FYNNodeModel;
 class FYNMoveHandler
 {
 public:
-	static void MovePiece(FYNMoveContext moveContext);
+	void StartMove(FYNMoveContext moveContext);
+	void Update(float deltaTime);
+
+private:
+	TArray<TSharedPtr<FYNNodeModel>> MovePath;
+	TSharedPtr<FYNPieceModel> PieceModel;
+	TSharedPtr<FYNNodeModel> PrevNodeModel;
+	float MoveTimer = 0.f;
+	int CurrentStepIndex = 1;
 };

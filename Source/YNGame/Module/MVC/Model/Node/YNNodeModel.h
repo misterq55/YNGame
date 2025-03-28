@@ -13,6 +13,7 @@ public:
 	void SetPos(const FVector& newPos);
 	FYNNodeContext& GetNodeContext();
 	void UpdateNodeView();
+	int32 GetId() const;
 
 private:
 	int32 Id;

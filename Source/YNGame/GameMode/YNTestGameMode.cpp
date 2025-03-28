@@ -15,3 +15,16 @@ void AYNTestGameMode::StartPlay()
 	FYNMVCHolder::GetInstance().SetController(MakeShareable(new FYNBaseController));
 	FYNMVCHolder::GetInstance().SetView(MakeShareable(new FYNView()));
 }
+
+void AYNTestGameMode::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	const TSharedPtr<IYNController> controller = FYNMVCHolder::GetInstance().GetController();
+	if (!controller.IsValid())
+	{
+		return;
+	}
+
+	controller->Update(DeltaSeconds);
+}

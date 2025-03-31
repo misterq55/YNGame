@@ -6,7 +6,17 @@ void FYNMoveHandler::StartMove(FYNMoveContext moveContext)
 {
 	PieceModel = moveContext.PieceModel;
 	MovePath = moveContext.NodeModels;
+
+	if (MovePath.Num() < 2)
+	{
+		return;
+	}
+
+	CurrentStepIndex = 1;
 	PrevNodeModel = MovePath[0];
+	NextNodeModel = MovePath[1];
+
+	PrevNodeModel->SetPieceIndex(PieceModel->GetPieceIndex());
 }
 
 void FYNMoveHandler::Update(float deltaTime)
@@ -15,25 +25,33 @@ void FYNMoveHandler::Update(float deltaTime)
 	{
 		return;
 	}
+
+	MoveTimer += deltaTime * MoveSpeed;
+
+	const FVector newPos = FMath::Lerp(PrevNodeModel->GetPos(), NextNodeModel->GetPos(), MoveTimer);
+	PieceModel->SetPos(newPos);
+	PieceModel->ChangeState(E_YNPieceState::Moving);
+
+	const FVector lookAtDir = (NextNodeModel->GetPos() - PrevNodeModel->GetPos()).GetSafeNormal();
+	PieceModel->SetLookAt(lookAtDir);
 	
-	MoveTimer += deltaTime;
-	if (MoveTimer > 1.f)
+	if (MoveTimer >= 1.f)
 	{
 		MoveTimer = 0.f;
 
-		if (CurrentStepIndex < MovePath.Num())
+		PrevNodeModel->ClearPieceIndex();
+		NextNodeModel->SetPieceIndex(PieceModel->GetPieceIndex());
+		PieceModel->SetNodeId(NextNodeModel->GetId());
+		PieceModel->ChangeState(E_YNPieceState::Idle);
+		
+		if (CurrentStepIndex < MovePath.Num() - 1)
 		{
-			TSharedPtr<FYNNodeModel>& nextModel = MovePath[CurrentStepIndex];
-
-			PieceModel->SetNodeId(nextModel->GetId());
-			PieceModel->ChangeState(E_YNPieceState::Moving);
-			
-			++CurrentStepIndex;
+			PrevNodeModel = NextNodeModel;
+			NextNodeModel = MovePath[++CurrentStepIndex];
 		}
 		else
 		{
 			CurrentStepIndex = 1;
-			PieceModel->ChangeState(E_YNPieceState::Idle);
 			PieceModel = nullptr;
 			MovePath.Empty();
 		}

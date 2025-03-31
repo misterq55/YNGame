@@ -27,7 +27,7 @@ void FYNTeamManager::AddPiece(const int32 teamIndex, const int32 pieceCount) con
 
 void FYNTeamManager::AddTeam(const int32 teamIndex)
 {
-	TSharedPtr<FYNTeamModel> TeamModel = MakeShared<FYNTeamModel>();
+	TSharedPtr<FYNTeamModel> TeamModel = MakeShareable(new FYNTeamModel(teamIndex));
 	TeamModels.Emplace(teamIndex, TeamModel);
 }
 

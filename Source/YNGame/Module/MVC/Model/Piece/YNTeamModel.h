@@ -8,6 +8,7 @@ class FYNTeamModel
 {
 public:
 	FYNTeamModel();
+	FYNTeamModel(const int32 teamIndex);
 	~FYNTeamModel();
 
 public:
@@ -18,6 +19,7 @@ public:
 	TSharedPtr<FYNPieceModel> FindPieceModel(const int32 currentPieceId) const;
 
 private:
-	int32 IndexCounter = 0;
+	int32 Id = 0;
+	int32 PieceIndexCounter = 0;
 	TMap<int32, TSharedPtr<FYNPieceModel>> PieceModels;
 };

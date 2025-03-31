@@ -29,12 +29,21 @@ struct FYNNodeContext
 	UClass* ViewActorClass = nullptr;
 };
 
+struct FYNPieceIndex
+{
+	int32 TeamIndex = 0;
+	int32 PieceIndex = 0;
+};
+
 struct FYNPieceContext
 {
+	FYNPieceIndex Id;
 	int32 CurrentNodeId = 0;
 	E_YNNestingState NestingState = E_YNNestingState::None;
 	E_YNPieceState PieceState = E_YNPieceState::None;
 	int32 NestingCount = 0;
+	FVector Pos = FVector::ZeroVector;
+	FVector LookAt = FVector::ZeroVector;
 };
 
 struct FYNPathResult

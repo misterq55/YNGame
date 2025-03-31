@@ -20,8 +20,27 @@ void FYNBoardManager::AddNode(const FVector& newPos)
 
 FYNPathResult FYNBoardManager::FindPath(const int32 startNodeId, const int32 steps)
 {
-	// TODO
+	// TODO 분기 처리 남음
 	FYNPathResult pathResult;
+
+	TSharedPtr<FYNNodeModel> currentNodeModel;
+	
+	for (int32 i = 0; i < steps; ++i)
+	{
+		const int32 currentNodeId = i == 0 ? startNodeId : currentNodeModel->GetId();
+
+		pathResult.Path.Emplace(currentNodeId);
+		
+		TSharedPtr<FYNNodeModel>* nextNodeModel = NodeModels.Find(currentNodeModel->GetNextNodeIds()[0]);
+	
+		if (nextNodeModel == nullptr || !nextNodeModel->IsValid())
+		{
+			continue;
+		}
+
+		currentNodeModel = *nextNodeModel;
+	}
+	
 	return MoveTemp(pathResult);
 }
 

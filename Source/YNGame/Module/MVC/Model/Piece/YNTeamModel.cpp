@@ -6,30 +6,43 @@ FYNTeamModel::FYNTeamModel()
 {
 }
 
+FYNTeamModel::FYNTeamModel(const int32 teamIndex)
+	:Id(teamIndex)
+{
+}
+
 FYNTeamModel::~FYNTeamModel()
 {
 }
 
 void FYNTeamModel::Move(const int32 currentPieceId, const FYNPathResult& path)
 {
-	if (const TSharedPtr<FYNPieceModel>* foundPieceModel= PieceModels.Find(currentPieceId))
+	const TSharedPtr<FYNPieceModel> foundPieceModel = FindPieceModel(currentPieceId);
+
+	if (foundPieceModel.IsValid())
 	{
-		return (*foundPieceModel)->Move(path);
+		foundPieceModel->Move(path);
 	}
 }
 
 void FYNTeamModel::AddPiece()
 {
-	TSharedPtr<FYNPieceModel> pieceModel;
-	pieceModel->Initialize();
-	PieceModels.Emplace(IndexCounter++, pieceModel);
+	TSharedPtr<FYNPieceModel> pieceModel = MakeShareable(new FYNPieceModel(Id, PieceIndexCounter));
+
+	if (pieceModel.IsValid())
+	{
+		pieceModel->Initialize();
+		PieceModels.Emplace(PieceIndexCounter++, pieceModel);
+	}
 }
 
 int32 FYNTeamModel::FindCurrentNodeId(const int32 currentPieceId) const
 {
-	if (const TSharedPtr<FYNPieceModel>* foundPieceModel= PieceModels.Find(currentPieceId))
+	const TSharedPtr<FYNPieceModel> foundPieceModel = FindPieceModel(currentPieceId);
+
+	if (foundPieceModel.IsValid())
 	{
-		return (*foundPieceModel)->GetCurrentNodeId();
+		return foundPieceModel->GetCurrentNodeId();
 	}
 	
 	return 0;
@@ -37,9 +50,11 @@ int32 FYNTeamModel::FindCurrentNodeId(const int32 currentPieceId) const
 
 FYNPieceContext& FYNTeamModel::FindPieceContext(const int32 currentPieceId)
 {
-	if (const TSharedPtr<FYNPieceModel>* foundPieceModel= PieceModels.Find(currentPieceId))
+	const TSharedPtr<FYNPieceModel> foundPieceModel = FindPieceModel(currentPieceId);
+
+	if (foundPieceModel.IsValid())
 	{
-		return (*foundPieceModel)->GetPieceContext();
+		return foundPieceModel->GetPieceContext();
 	}
 
 	static FYNPieceContext nullPieceContext;

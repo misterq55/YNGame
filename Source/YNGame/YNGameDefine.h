@@ -17,6 +17,14 @@ enum class E_YNPieceState : uint8
 	Moving,
 };
 
+enum class E_YNNodeType : uint8
+{
+	None,
+	Start,
+	Normal,
+	Goal,
+};
+
 enum class E_KTurnState : uint8
 {
 	None,
@@ -57,4 +65,10 @@ struct FYNMoveContext
 {
 	TSharedPtr<FYNPieceModel> PieceModel = nullptr;
 	TArray<TSharedPtr<FYNNodeModel>> NodeModels;
+};
+
+struct FYNDirectionalConnection
+{
+	int32 FromNodeId = -1;
+	int32 ToNodeId = -1;
 };

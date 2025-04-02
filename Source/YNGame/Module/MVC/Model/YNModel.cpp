@@ -18,8 +18,8 @@ void FYNModel::Initialize()
 {
 	BoardMgr = MakeShareable(new FYNBoardManager());
 	TeamMgr = MakeShareable(new FYNTeamManager());
-	CurrentTurn = MakeShareable(new FYNTurn);
-	MoveHandler = MakeShareable(new FYNMoveHandler);
+	CurrentTurn = MakeShareable(new FYNTurn());
+	MoveHandler = MakeShareable(new FYNMoveHandler());
 }
 
 void FYNModel::StartPlay()
@@ -89,8 +89,15 @@ void FYNModel::Move(const int32 steps)
 	const int32 startNodeId = TeamMgr->FindStartNodeId(currentTurnTeamId, currentPieceId);
 	const FYNPathResult pathResult = BoardMgr->FindPath(startNodeId, steps);
 
-	TArray<TSharedPtr<FYNNodeModel>> nodeModels = BoardMgr->FindNodes(pathResult.Path);
-	TSharedPtr<FYNPieceModel> pieceModel = TeamMgr->FindPieceModel(currentTurnTeamId, currentPieceId);
+	// 골에 딱 맞게 들어오지 않음
+	if (pathResult.bIsBlocked)
+	{
+		// TODO 골에 딱 맞게 안들어왔을 때 처리
+		return;
+	}
+
+	const TArray<TSharedPtr<FYNNodeModel>>& nodeModels = BoardMgr->FindNodes(pathResult.Path);
+	const TSharedPtr<FYNPieceModel>& pieceModel = TeamMgr->FindPieceModel(currentTurnTeamId, currentPieceId);
 
 	FYNMoveContext moveContext;
 	moveContext.PieceModel = pieceModel;

@@ -20,25 +20,40 @@ void FYNBoardManager::AddNode(const FVector& newPos)
 
 FYNPathResult FYNBoardManager::FindPath(const int32 startNodeId, const int32 steps)
 {
-	// TODO 분기 처리 남음
 	FYNPathResult pathResult;
 
-	TSharedPtr<FYNNodeModel> currentNodeModel;
+	int32 prevNodeId = -1;
+	int32 currentNodeId = startNodeId;
 	
 	for (int32 i = 0; i < steps; ++i)
 	{
-		const int32 currentNodeId = i == 0 ? startNodeId : currentNodeModel->GetId();
-
-		pathResult.Path.Emplace(currentNodeId);
-		
-		TSharedPtr<FYNNodeModel>* nextNodeModel = NodeModels.Find(currentNodeModel->GetNextNodeIds()[0]);
+		const TSharedPtr<FYNNodeModel>* foundNodeModel = NodeModels.Find(currentNodeId);
 	
-		if (nextNodeModel == nullptr || !nextNodeModel->IsValid())
+		if (foundNodeModel == nullptr || !foundNodeModel->IsValid())
 		{
-			continue;
+			ensureMsgf(false, TEXT("Invalid node ID: %d"), currentNodeId);
+			break;
 		}
 
-		currentNodeModel = *nextNodeModel;
+		const TSharedPtr<FYNNodeModel>& currentNodeModel = *foundNodeModel;
+
+		pathResult.Path.Emplace(currentNodeId);
+
+		if (currentNodeModel->GetNodeType() == E_YNNodeType::Goal)
+		{
+			pathResult.bIsBlocked = true;
+			break;
+		}
+		
+		const int32 nextNodeId = currentNodeModel->FindNextNodeId(prevNodeId);
+		if (nextNodeId == -1)
+		{
+			ensureMsgf(false, TEXT("Invalid Next node ID: %d"), currentNodeId);
+			break;
+		}
+		
+		prevNodeId = currentNodeId;
+		currentNodeId = nextNodeId;
 	}
 	
 	return MoveTemp(pathResult);

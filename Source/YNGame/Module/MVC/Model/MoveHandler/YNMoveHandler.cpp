@@ -2,7 +2,7 @@
 #include "YNGame/Module/MVC/Model/Piece/YNPieceModel.h"
 #include "YNGame/Module/MVC/Model/Node/YNNodeModel.h"
 
-void FYNMoveHandler::StartMove(FYNMoveContext moveContext)
+void FYNMoveHandler::StartMove(const FYNMoveContext& moveContext)
 {
 	PieceModel = moveContext.PieceModel;
 	MovePath = moveContext.NodeModels;

@@ -7,7 +7,7 @@ class FYNNodeModel;
 class FYNMoveHandler
 {
 public:
-	void StartMove(FYNMoveContext moveContext);
+	void StartMove(const FYNMoveContext& moveContext);
 	void Update(float deltaTime);
 
 private:

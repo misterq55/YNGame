@@ -11,6 +11,7 @@ public:
 	virtual ~FYNView();
 	
 public:
+	virtual void Initialize() override;
 	virtual void CreateNodeView(const int32 nodeId) override;
 	virtual void CreatePieceView(const int32 teamId, const int32 pieceId) override;
 	virtual void UpdateNodeView(const int32 nodeId, const FYNNodeContext& nodeContext) override;

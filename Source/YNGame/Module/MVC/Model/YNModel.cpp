@@ -20,11 +20,16 @@ void FYNModel::Initialize()
 	TeamMgr = MakeShareable(new FYNTeamManager());
 	CurrentTurn = MakeShareable(new FYNTurn());
 	MoveHandler = MakeShareable(new FYNMoveHandler());
-}
 
-void FYNModel::StartPlay()
-{
-	// TODO 초기화
+	if (TeamMgr.IsValid())
+	{
+		// TODO 팀 최대 말 수 입력할 수 있도록
+	}
+	
+	if (CurrentTurn.IsValid())
+	{
+		CurrentTurn->Initialize();
+	}
 }
 
 void FYNModel::AddNode(const FVector& newPos)
@@ -55,11 +60,39 @@ void FYNModel::AddTeam()
 void FYNModel::AdvanceStep()
 {
 	// TODO 턴 관련 처리
+	if (!CurrentTurn.IsValid())
+	{
+		return;
+	}
+
+	CurrentTurn->AdvanceStep();
 }
 
 void FYNModel::ChangeTurn()
 {
 	// TODO 턴 관련 처리
+	if (!CurrentTurn.IsValid())
+	{
+		return;
+	}
+
+	if (!TeamMgr.IsValid())
+	{
+		return;
+	}
+
+	CurrentTurn->ChangeTurn();
+	CurrentTurn->ChangePiece();
+	
+	const int32 currentTurnTeamId = CurrentTurn->GetTurnOwnerTeamId();
+	int32 currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
+
+	// 루프로 현재 업히지 않은 상태의 말을 찾는다
+	while (TeamMgr->CheckCurrentPieceNested(currentTurnTeamId, currentPieceId))
+	{
+		CurrentTurn->ChangePiece();
+		currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
+	}
 }
 
 void FYNModel::Move(const int32 steps)

@@ -14,6 +14,20 @@ void AYNTestGameMode::StartPlay()
 	FYNMVCHolder::GetInstance().SetModel(MakeShareable(new FYNModel()));
 	FYNMVCHolder::GetInstance().SetController(MakeShareable(new FYNBaseController));
 	FYNMVCHolder::GetInstance().SetView(MakeShareable(new FYNView()));
+
+	const auto& model = FYNMVCHolder::GetInstance().GetModel();
+	if (model.IsValid())
+	{
+		model->Initialize();
+	}
+	
+	const auto& controller = FYNMVCHolder::GetInstance().GetController();
+	if (controller.IsValid())
+	{
+		
+	}
+	
+	const auto& view = FYNMVCHolder::GetInstance().GetView();
 }
 
 void AYNTestGameMode::Tick(float DeltaSeconds)

@@ -7,7 +7,6 @@ class IYNModel
 {
 public:
 	virtual void Initialize() = 0;
-	virtual void StartPlay() = 0;
 	virtual void AddNode(const FVector& newPos) = 0;
 	virtual void AddTeams(const int32 teamCount, const int32 pieceCount) = 0;
 	virtual void AddTeam() = 0;

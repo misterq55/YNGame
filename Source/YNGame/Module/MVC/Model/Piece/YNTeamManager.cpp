@@ -74,3 +74,10 @@ TSharedPtr<FYNTeamModel> FYNTeamManager::FindTeamModel(const int32 teamId) const
 	
 	return nullptr;
 }
+
+bool FYNTeamManager::CheckCurrentPieceNested(const int32 teamId, const int32 pieceId) const
+{
+	const FYNPieceContext& PieceContext = GetPieceContext(teamId, pieceId);
+
+	return PieceContext.NestingState == E_YNNestingState::Nested;
+}

@@ -11,6 +11,10 @@ FYNBaseController::~FYNBaseController()
 {
 }
 
+void FYNBaseController::Initialize()
+{
+}
+
 int32 FYNBaseController::RollYut()
 {
 	// TODO

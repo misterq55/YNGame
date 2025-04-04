@@ -14,7 +14,6 @@ public:
 	
 public:
 	virtual void Initialize() override;
-	virtual void StartPlay() override;
 	virtual void AddNode(const FVector& newPos) override;
 	virtual void AddTeams(const int32 teamCount, const int32 pieceCount) override;
 	virtual void AddTeam() override;

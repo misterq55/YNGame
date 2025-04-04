@@ -11,6 +11,10 @@ FYNView::~FYNView()
 {
 }
 
+void FYNView::Initialize()
+{
+}
+
 void FYNView::CreateNodeView(const int32 nodeId)
 {
 	TSharedPtr<FYNNodeView> nodeView = MakeShareable(new FYNNodeView());

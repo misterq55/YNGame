@@ -8,6 +8,7 @@ enum class E_YNNestingState : uint8
 	None,
 	Leader,
 	Nested,
+	_Max,
 };
 
 enum class E_YNPieceState : uint8
@@ -15,6 +16,7 @@ enum class E_YNPieceState : uint8
 	None,
 	Idle,
 	Moving,
+	_Max,
 };
 
 enum class E_YNNodeType : uint8
@@ -23,11 +25,13 @@ enum class E_YNNodeType : uint8
 	Start,
 	Normal,
 	Goal,
+	_Max,
 };
 
 enum class E_KTurnState : uint8
 {
 	None,
+	_Max,
 };
 
 struct FYNNodeContext
@@ -49,6 +53,7 @@ struct FYNPieceContext
 	int32 CurrentNodeId = 0;
 	E_YNNestingState NestingState = E_YNNestingState::None;
 	E_YNPieceState PieceState = E_YNPieceState::None;
+	int32 NestingLeaderIndex = 0;
 	int32 NestingCount = 0;
 	FVector Pos = FVector::ZeroVector;
 	FVector LookAt = FVector::ZeroVector;

@@ -9,6 +9,7 @@ public:
 	virtual ~FYNBaseController();
 	
 public:
+	virtual void Initialize() override;
 	virtual int32 RollYut() override;
 	virtual void Move(const int32 steps) override;
 	virtual void ChangeTurn() override;

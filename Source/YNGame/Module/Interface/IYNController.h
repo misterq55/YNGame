@@ -5,6 +5,7 @@ class FYNControllerComponent;
 class IYNController
 {
 public:
+	virtual void Initialize() = 0;
 	virtual int32 RollYut() = 0;
 	virtual void Move(const int32 steps) = 0;
 	virtual void ChangeTurn() = 0;

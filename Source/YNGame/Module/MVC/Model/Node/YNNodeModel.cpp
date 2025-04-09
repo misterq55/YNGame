@@ -38,15 +38,36 @@ int32 FYNNodeModel::GetId() const
 	return Id;
 }
 
-void FYNNodeModel::SetPieceIndex(const FYNPieceIndex& newPieceIndex)
+void FYNNodeModel::SetMovingPieceIndex(const FYNPieceIndex& newPieceIndex)
 {
-	CurrentPieceIndex = newPieceIndex;
+	CurrentMovingPieceIndex = newPieceIndex;
 }
 
-void FYNNodeModel::ClearPieceIndex()
+FYNPieceIndex& FYNNodeModel::GetMovingPieceIndex()
 {
-	CurrentPieceIndex.TeamIndex = -1;
-	CurrentPieceIndex.PieceIndex = -1;
+	return CurrentMovingPieceIndex;
+}
+
+void FYNNodeModel::SetStayingPieceIndex(const FYNPieceIndex& newPieceIndex)
+{
+	CurrentStayingPieceIndex = newPieceIndex;
+}
+
+FYNPieceIndex& FYNNodeModel::GetStayingPieceIndex()
+{
+	return CurrentStayingPieceIndex;
+}
+
+void FYNNodeModel::ClearMovingPieceIndex()
+{
+	CurrentMovingPieceIndex.TeamIndex = -1;
+	CurrentMovingPieceIndex.PieceIndex = -1;
+}
+
+void FYNNodeModel::ClearStayingPieceIndex()
+{
+	CurrentStayingPieceIndex.TeamIndex = -1;
+	CurrentStayingPieceIndex.PieceIndex = -1;
 }
 
 TArray<int32>& FYNNodeModel::GetNextNodeIds()

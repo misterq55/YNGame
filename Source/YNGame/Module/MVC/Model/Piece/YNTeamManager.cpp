@@ -75,9 +75,10 @@ TSharedPtr<FYNTeamModel> FYNTeamManager::FindTeamModel(const int32 teamId) const
 	return nullptr;
 }
 
-bool FYNTeamManager::CheckCurrentPieceNested(const int32 teamId, const int32 pieceId) const
+bool FYNTeamManager::CheckCurrentPieceMovable(const int32 teamId, const int32 pieceId) const
 {
 	const FYNPieceContext& PieceContext = GetPieceContext(teamId, pieceId);
 
-	return PieceContext.NestingState == E_YNNestingState::Nested;
+	// 업혔거나 이미 골인 했거나를 판단함
+	return PieceContext.PieceState == E_YNPieceState::Nested || PieceContext.PieceState == E_YNPieceState::Goal;
 }

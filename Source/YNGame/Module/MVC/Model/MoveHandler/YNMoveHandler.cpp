@@ -16,7 +16,8 @@ void FYNMoveHandler::StartMove(const FYNMoveContext& moveContext)
 	PrevNodeModel = MovePath[0];
 	NextNodeModel = MovePath[1];
 
-	PrevNodeModel->SetPieceIndex(PieceModel->GetPieceIndex());
+	PrevNodeModel->ClearStayingPieceIndex();
+	PrevNodeModel->SetMovingPieceIndex(PieceModel->GetPieceIndex());
 }
 
 void FYNMoveHandler::Update(float deltaTime)
@@ -39,8 +40,8 @@ void FYNMoveHandler::Update(float deltaTime)
 	{
 		MoveTimer = 0.f;
 
-		PrevNodeModel->ClearPieceIndex();
-		NextNodeModel->SetPieceIndex(PieceModel->GetPieceIndex());
+		PrevNodeModel->ClearMovingPieceIndex();
+		NextNodeModel->SetMovingPieceIndex(PieceModel->GetPieceIndex());
 		PieceModel->SetNodeId(NextNodeModel->GetId());
 		PieceModel->ChangeState(E_YNPieceState::Idle);
 		
@@ -51,9 +52,14 @@ void FYNMoveHandler::Update(float deltaTime)
 		}
 		else
 		{
+			const int32 nodeId = NextNodeModel->GetId();
+			const FYNPieceIndex& pieceIndex = PieceModel->GetPieceIndex();
+			
 			CurrentStepIndex = 1;
 			PieceModel = nullptr;
 			MovePath.Empty();
+
+			MoveEndEvent.ExecuteIfBound(nodeId, pieceIndex);
 		}
 	}
 }

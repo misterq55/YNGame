@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "YNGame/YNGameDefine.h"
 
+DECLARE_DELEGATE_TwoParams(FYNOnMoveEndEvent, const int32, const FYNPieceIndex&);
+
 class FYNPieceModel;
 class FYNNodeModel;
 
@@ -10,6 +12,8 @@ public:
 	void StartMove(const FYNMoveContext& moveContext);
 	void Update(float deltaTime);
 
+	FYNOnMoveEndEvent& GetMoveEndEvent() { return MoveEndEvent; }
+	
 private:
 	TArray<TSharedPtr<FYNNodeModel>> MovePath;
 	TSharedPtr<FYNPieceModel> PieceModel;
@@ -18,4 +22,5 @@ private:
 	float MoveTimer = 0.f;
 	float MoveSpeed = 1.f;
 	int CurrentStepIndex = 1;
+	FYNOnMoveEndEvent MoveEndEvent;
 };

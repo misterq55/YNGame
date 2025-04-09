@@ -3,6 +3,8 @@
 #include "MoveHandler/YNMoveHandler.h"
 #include "YNGame/YNGameDefine.h"
 #include "Node/YNBoardManager.h"
+#include "Node/YNNodeModel.h"
+#include "Piece/YNPieceModel.h"
 #include "Piece/YNTeamManager.h"
 #include "Turn/YNTurn.h"
 
@@ -29,6 +31,12 @@ void FYNModel::Initialize()
 	if (CurrentTurn.IsValid())
 	{
 		CurrentTurn->Initialize();
+	}
+
+	if (MoveHandler.IsValid())
+	{
+		auto& moveEndEvent = MoveHandler->GetMoveEndEvent();
+		moveEndEvent.BindRaw(this, &FYNModel::OnMoveEnd);
 	}
 }
 
@@ -87,8 +95,8 @@ void FYNModel::ChangeTurn()
 	const int32 currentTurnTeamId = CurrentTurn->GetTurnOwnerTeamId();
 	int32 currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
 
-	// 루프로 현재 업히지 않은 상태의 말을 찾는다
-	while (TeamMgr->CheckCurrentPieceNested(currentTurnTeamId, currentPieceId))
+	// 루프로 현재 사용 가능한 말을 찾는다
+	while (TeamMgr->CheckCurrentPieceMovable(currentTurnTeamId, currentPieceId))
 	{
 		CurrentTurn->ChangePiece();
 		currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
@@ -125,7 +133,8 @@ void FYNModel::Move(const int32 steps)
 	// 골에 딱 맞게 들어오지 않음
 	if (pathResult.bIsBlocked)
 	{
-		// TODO 골에 딱 맞게 안들어왔을 때 처리
+		// 턴을 넘긴다
+		ChangeTurn();
 		return;
 	}
 
@@ -137,6 +146,54 @@ void FYNModel::Move(const int32 steps)
 	moveContext.NodeModels = nodeModels;
 
 	MoveHandler->StartMove(MoveTemp(moveContext));
+}
+
+void FYNModel::OnMoveEnd(const int32 nodeId, const FYNPieceIndex& pieceIndex)
+{
+	if (!BoardMgr.IsValid())
+	{
+		return;
+	}
+
+	if (!TeamMgr.IsValid())
+	{
+		return;
+	}
+
+	TArray<TSharedPtr<FYNNodeModel>> nodeModels = BoardMgr->FindNodes({nodeId});
+
+	if (nodeModels.IsEmpty())
+	{
+		return;
+	}
+	
+	TSharedPtr<FYNNodeModel> nodeModel = nodeModels[0];
+
+	if (!nodeModel.IsValid())
+	{
+		return;
+	}
+
+	const FYNPieceIndex& currentStayingIndex = nodeModel->GetStayingPieceIndex();
+
+	TSharedPtr<FYNPieceModel> curreutStayingPiece = TeamMgr->FindPieceModel(currentStayingIndex.TeamIndex, currentStayingIndex.PieceIndex);
+
+	// 현재 해당 노드에 머무르고 있는 말이 있다
+	if (currentStayingIndex.TeamIndex != -1)
+	{
+		if (currentStayingIndex.TeamIndex == pieceIndex.TeamIndex)
+		{
+			// 같은 편 말 업기
+			curreutStayingPiece->ChangeState(E_YNPieceState::Nested);
+		}
+		else
+		{
+			// 상대편 말 잡기
+			// 내 턴 한번 더
+		}	
+	}
+
+	nodeModel->SetStayingPieceIndex(pieceIndex);
 }
 
 bool FYNModel::IsRepeat()

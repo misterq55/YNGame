@@ -15,8 +15,12 @@ public:
 	FYNNodeContext& GetNodeContext();
 	void UpdateNodeView();
 	int32 GetId() const;
-	void SetPieceIndex(const FYNPieceIndex& newPieceIndex);
-	void ClearPieceIndex();
+	void SetMovingPieceIndex(const FYNPieceIndex& newPieceIndex);
+	FYNPieceIndex& GetMovingPieceIndex();
+	void SetStayingPieceIndex(const FYNPieceIndex& newPieceIndex);
+	FYNPieceIndex& GetStayingPieceIndex();
+	void ClearMovingPieceIndex();
+	void ClearStayingPieceIndex();
 	TArray<int32>& GetNextNodeIds();
 	int32 FindNextNodeId(const int32 prevNodeId);
 	void SetNodeType(const E_YNNodeType& newNodeType);
@@ -24,7 +28,8 @@ public:
 
 private:
 	int32 Id;
-	FYNPieceIndex CurrentPieceIndex;
+	FYNPieceIndex CurrentMovingPieceIndex;
+	FYNPieceIndex CurrentStayingPieceIndex;
 	FYNNodeContext NodeContext;
 	TArray<int32> NextNodeIds;
 	TArray<FYNDirectionalConnection> DirectionalConnections;

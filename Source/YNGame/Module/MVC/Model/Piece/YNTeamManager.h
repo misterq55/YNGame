@@ -19,7 +19,7 @@ public:
 	FYNPieceContext& GetPieceContext(const int32 teamId, const int32 pieceIndex) const;
 	TSharedPtr<FYNPieceModel> FindPieceModel(const int32 teamId, const int32 pieceId) const;
 	TSharedPtr<FYNTeamModel> FindTeamModel(const int32 teamId) const;
-	bool CheckCurrentPieceNested(const int32 teamId, const int32 pieceId) const;
+	bool CheckCurrentPieceMovable(const int32 teamId, const int32 pieceId) const;
 	
 private:
 	int IndexCounter = 0;

@@ -20,6 +20,7 @@ public:
 	virtual void AdvanceStep() override;
 	virtual void ChangeTurn() override;
 	virtual void Move(const int32 steps) override;
+	virtual void OnMoveEnd(const int32 nodeId, const FYNPieceIndex& pieceIndex) override;
 	virtual bool IsRepeat() override;
 	virtual void Update(float deltaTimes) override;
 	virtual FYNNodeContext& FindNodeContext(const int32 nodeId) override;

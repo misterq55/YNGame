@@ -2,6 +2,7 @@
 
 struct FYNNodeContext;
 struct FYNPieceContext;
+struct FYNPieceIndex;
 
 class IYNModel
 {
@@ -13,6 +14,7 @@ public:
 	virtual void AdvanceStep() = 0;
 	virtual void ChangeTurn() = 0;
 	virtual void Move(const int32 steps) = 0;
+	virtual void OnMoveEnd(const int32 nodeId, const FYNPieceIndex& pieceIndex) = 0;
 	virtual bool IsRepeat() = 0;
 	virtual void Update(float deltaTimes) = 0;
 	virtual FYNNodeContext& FindNodeContext(const int32 nodeId) = 0;

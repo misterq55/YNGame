@@ -160,6 +160,8 @@ void FYNModel::OnMoveEnd(const int32 nodeId, const FYNPieceIndex& pieceIndex)
 		return;
 	}
 
+	// TODO
+	// 게임 룰 담당 클래스 만들어서 추출? 예정
 	TArray<TSharedPtr<FYNNodeModel>> nodeModels = BoardMgr->FindNodes({nodeId});
 
 	if (nodeModels.IsEmpty())
@@ -189,11 +191,28 @@ void FYNModel::OnMoveEnd(const int32 nodeId, const FYNPieceIndex& pieceIndex)
 		else
 		{
 			// 상대편 말 잡기
+			curreutStayingPiece->ChangeState(E_YNPieceState::Unspawned);
+
+			// TODO
 			// 내 턴 한번 더
 		}	
 	}
 
 	nodeModel->SetStayingPieceIndex(pieceIndex);
+
+	// 골 처리
+	if (nodeModel->GetNodeType() == E_YNNodeType::Goal)
+	{
+		// 말 들어온 팀 득점
+		TSharedPtr<FYNPieceModel> curreutMovingPiece = TeamMgr->FindPieceModel(pieceIndex.TeamIndex, pieceIndex.PieceIndex);
+		if (curreutMovingPiece.IsValid())
+		{
+			curreutMovingPiece->ChangeState(E_YNPieceState::Goal);
+
+			// TODO
+			// 득점 처리
+		}
+	}
 }
 
 bool FYNModel::IsRepeat()

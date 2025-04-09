@@ -6,6 +6,7 @@ class FYNNodeModel;
 enum class E_YNPieceState : uint8
 {
 	None,
+	Unspawned,
 	Idle,
 	Moving,
 	Nested,

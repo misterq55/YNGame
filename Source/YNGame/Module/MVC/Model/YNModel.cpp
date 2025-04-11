@@ -103,6 +103,16 @@ void FYNModel::ChangeTurn()
 	}
 }
 
+E_KStepState FYNModel::GetCurrentStepState()
+{
+	if (!CurrentTurn.IsValid())
+	{
+		return E_KStepState::None;
+	}
+
+	return CurrentTurn->GetStepState();
+}
+
 void FYNModel::Move(const int32 steps)
 {
 	if (!TeamMgr.IsValid())

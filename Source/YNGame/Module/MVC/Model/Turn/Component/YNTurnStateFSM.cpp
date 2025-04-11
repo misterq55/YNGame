@@ -15,10 +15,10 @@ void FYNTurnStateFSM::SetOwnerTurn(const TSharedPtr<FYNTurn>& ownerTurn)
 	OwnerTurn = ownerTurn;
 }
 
-void FYNTurnStateFSM::changeState(const E_KTurnState& newState) const
+void FYNTurnStateFSM::changeState(const E_KStepState& newState) const
 {
 	if (OwnerTurn.IsValid())
 	{
-		OwnerTurn.Pin()->ChangeState(newState);
+		OwnerTurn.Pin()->ChangeStepState(newState);
 	}
 }

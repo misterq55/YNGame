@@ -23,9 +23,11 @@ enum class E_YNNodeType : uint8
 	_Max,
 };
 
-enum class E_KTurnState : uint8
+enum class E_KStepState : uint8
 {
 	None,
+	RollYut,
+	MovePiece,
 	_Max,
 };
 

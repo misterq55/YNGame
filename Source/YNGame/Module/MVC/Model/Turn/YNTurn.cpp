@@ -4,7 +4,7 @@
 #include "YNGame/YNGameDefine.h"
 
 FYNTurn::FYNTurn()
-	:TurnState(E_KTurnState::None)
+	:StepState(E_KStepState::None)
 {
 }
 
@@ -14,7 +14,7 @@ FYNTurn::~FYNTurn()
 
 void FYNTurn::Initialize()
 {
-	TurnState = E_KTurnState::None;
+	StepState = E_KStepState::None;
 	TurnStateFSM = MakeShareable(new FYNTurnStateFSM());
 }
 
@@ -44,18 +44,18 @@ void FYNTurn::SetMaxPieceCount(const int pieceCount)
 	MaxPieceCount = pieceCount;
 }
 
-void FYNTurn::ChangeState(const E_KTurnState& newState)
+void FYNTurn::ChangeStepState(const E_KStepState& newState)
 {
-	TurnState = newState;
+	StepState = newState;
 }
 
 void FYNTurn::AdvanceStep()
 {
-	int32 turnValue = static_cast<int32>(TurnState);
-	turnValue++;
-	turnValue %= static_cast<int32>(E_KTurnState::_Max);
+	int32 stepValue = static_cast<int32>(StepState);
+	stepValue++;
+	stepValue %= static_cast<int32>(E_KStepState::_Max);
 
-	TurnState = static_cast<E_KTurnState>(turnValue);
+	StepState = static_cast<E_KStepState>(stepValue);
 }
 
 int32 FYNTurn::GetTurnOwnerTeamId() const
@@ -71,4 +71,9 @@ int32 FYNTurn::GetTurnOwnerPieceId() const
 	}
 	
 	return TurnOwnerPieceIds[TurnOwnerTeamId];
+}
+
+E_KStepState FYNTurn::GetStepState() const
+{
+	return StepState;
 }

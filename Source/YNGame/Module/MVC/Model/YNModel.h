@@ -19,6 +19,7 @@ public:
 	virtual void AddTeam() override;
 	virtual void AdvanceStep() override;
 	virtual void ChangeTurn() override;
+	virtual E_KStepState GetCurrentStepState() override;
 	virtual void Move(const int32 steps) override;
 	virtual void OnMoveEnd(const int32 nodeId, const FYNPieceIndex& pieceIndex) override;
 	virtual bool IsRepeat() override;

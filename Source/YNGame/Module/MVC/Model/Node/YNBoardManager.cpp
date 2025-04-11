@@ -24,6 +24,12 @@ FYNPathResult FYNBoardManager::FindPath(const int32 startNodeId, const int32 ste
 
 	int32 prevNodeId = -1;
 	int32 currentNodeId = startNodeId;
+
+	// TODO 빽도
+	if (steps == -1)
+	{
+		return MoveTemp(pathResult);
+	}
 	
 	for (int32 i = 0; i < steps; ++i)
 	{

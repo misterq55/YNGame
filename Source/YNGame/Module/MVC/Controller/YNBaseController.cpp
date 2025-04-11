@@ -18,7 +18,9 @@ void FYNBaseController::Initialize()
 int32 FYNBaseController::RollYut()
 {
 	// TODO
-	return 0;
+	// 임시값
+	const int yutValue = FMath::Rand() % 5;
+	return yutValue;
 }
 
 void FYNBaseController::Move(const int32 steps)

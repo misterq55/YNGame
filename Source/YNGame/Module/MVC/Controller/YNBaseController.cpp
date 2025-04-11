@@ -19,7 +19,7 @@ int32 FYNBaseController::RollYut()
 {
 	// TODO
 	// 임시값
-	const int yutValue = FMath::Rand() % 5;
+	const int yutValue = (FMath::Rand() % 6) - 1;
 	return yutValue;
 }
 

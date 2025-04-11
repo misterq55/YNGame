@@ -13,5 +13,8 @@ UCLASS()
 class YNGAME_API AYNPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+public:
+	virtual void BeginPlay() override;
+	virtual bool Exec(UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar) override;
 };

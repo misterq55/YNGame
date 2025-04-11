@@ -8,7 +8,7 @@ void AYNPlayerController::BeginPlay()
 	Super::BeginPlay();
 }
 
-bool AYNPlayerController::Exec(UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar)
+bool AYNPlayerController::ProcessConsoleExec(const TCHAR* Cmd, FOutputDevice& Ar, UObject* Executor)
 {
 	return true;
 }

@@ -16,5 +16,5 @@ class YNGAME_API AYNPlayerController : public APlayerController
 
 public:
 	virtual void BeginPlay() override;
-	virtual bool Exec(UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar) override;
+	virtual bool ProcessConsoleExec(const TCHAR* Cmd, FOutputDevice& Ar, UObject* Executor) override;
 };

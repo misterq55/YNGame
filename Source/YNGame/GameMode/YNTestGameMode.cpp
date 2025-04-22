@@ -7,6 +7,11 @@
 #include "YNGame/Module/MVC/Controller/YNBaseController.h"
 #include "YNGame/Module/MVC/View/YNTestCliView.h"
 
+AYNTestGameMode::AYNTestGameMode()
+{
+	PrimaryActorTick.bCanEverTick = true;
+}
+
 void AYNTestGameMode::StartPlay()
 {
 	Super::StartPlay();
@@ -43,6 +48,9 @@ void AYNTestGameMode::StartPlay()
 	model->GetOnNodeModelCreateEvent().BindSP(view.ToSharedRef(), &IYNView::CreateNodeView);
 	model->GetOnPieceModelUpdateEvent().BindSP(view.ToSharedRef(), &IYNView::UpdatePieceView);
 	model->GetOnNodeModelUpdateEvent().BindSP(view.ToSharedRef(), &IYNView::UpdateNodeView);
+
+	// TODO
+	// 피스와 노드 생성 로직 추가
 }
 
 void AYNTestGameMode::Tick(float DeltaSeconds)
@@ -55,5 +63,6 @@ void AYNTestGameMode::Tick(float DeltaSeconds)
 		return;
 	}
 
+	// 뷰를 업데이트 하는 로직이 모델의 업데이트안에 있다.
 	controller->Update(DeltaSeconds);
 }

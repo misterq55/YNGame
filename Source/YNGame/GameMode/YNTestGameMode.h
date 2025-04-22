@@ -15,6 +15,9 @@ class YNGAME_API AYNTestGameMode : public AYNGameModeBase
 	GENERATED_BODY()
 
 public:
+	AYNTestGameMode();
+	
+public:
 	virtual void StartPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 };

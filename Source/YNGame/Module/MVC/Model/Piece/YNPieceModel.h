@@ -20,7 +20,7 @@ public:
 	FYNPieceContext& GetPieceContext();
 	void UpdatePieceView();
 	void SetNodeId(const int32 nodeId);
-	void ChangeState(E_YNPieceState newState);
+	void ChangeState(const E_YNPieceState newState);
 	void SetPos(const FVector &newPos);
 	FVector& GetPos();
 	void SetLookAt(const FVector &newLookAt);

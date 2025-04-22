@@ -237,7 +237,16 @@ void FYNModel::Update(float deltaTimes)
 		return;
 	}
 
-	MoveHandler->Update(deltaTimes);
+	if (MoveHandler->Update(deltaTimes))
+	{
+		if (CurrentTurn.IsValid())
+		{
+			const int32 currentTurnTeamId = CurrentTurn->GetTurnOwnerTeamId();
+			const int32 currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
+			const FYNPieceContext& pieceContext = FindPieceContext(currentTurnTeamId, currentPieceId);
+			OnPieceModelUpdateEvent.ExecuteIfBound(currentTurnTeamId, currentPieceId, pieceContext);
+		}
+	}
 }
 
 FYNNodeContext& FYNModel::FindNodeContext(const int32 nodeId)
@@ -260,4 +269,24 @@ FYNPieceContext& FYNModel::FindPieceContext(const int32 teamId, const int32 piec
 	}
 
 	return TeamMgr->GetPieceContext(teamId, pieceId);
+}
+
+FYNPieceModelCreateEvent& FYNModel::GetOnPieceModelCreateEvent()
+{
+	return OnPieceModelCreateEvent;
+}
+
+FYNNodeModelCreateEvent& FYNModel::GetOnNodeModelCreateEvent()
+{
+	return OnNodeModelCreateEvent;
+}
+
+FYNPieceModelUpdateEvent& FYNModel::GetOnPieceModelUpdateEvent()
+{
+	return OnPieceModelUpdateEvent;
+}
+
+FYNNodeModelUpdateEvent& FYNModel::GetOnNodeModelUpdateEvent()
+{
+	return OnNodeModelUpdateEvent;
 }

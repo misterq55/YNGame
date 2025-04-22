@@ -10,7 +10,7 @@ class FYNMoveHandler
 {
 public:
 	void StartMove(const FYNMoveContext& moveContext);
-	void Update(float deltaTime);
+	bool Update(float deltaTime);
 
 	FYNOnMoveEndEvent& GetMoveEndEvent() { return MoveEndEvent; }
 	

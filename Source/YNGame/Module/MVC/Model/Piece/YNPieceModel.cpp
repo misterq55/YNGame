@@ -44,7 +44,7 @@ void FYNPieceModel::SetNodeId(const int32 nodeId)
 	PieceContext.CurrentNodeId = nodeId;
 }
 
-void FYNPieceModel::ChangeState(E_YNPieceState newState)
+void FYNPieceModel::ChangeState(const E_YNPieceState newState)
 {
 	if (PieceContext.PieceState == newState)
 	{

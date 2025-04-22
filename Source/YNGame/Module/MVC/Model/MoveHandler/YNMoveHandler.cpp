@@ -20,11 +20,11 @@ void FYNMoveHandler::StartMove(const FYNMoveContext& moveContext)
 	PrevNodeModel->SetMovingPieceIndex(PieceModel->GetPieceIndex());
 }
 
-void FYNMoveHandler::Update(float deltaTime)
+bool FYNMoveHandler::Update(float deltaTime)
 {
 	if (!PieceModel.IsValid() || MovePath.IsEmpty())
 	{
-		return;
+		return false;
 	}
 
 	MoveTimer += deltaTime * MoveSpeed;
@@ -62,4 +62,6 @@ void FYNMoveHandler::Update(float deltaTime)
 			MoveEndEvent.ExecuteIfBound(nodeId, pieceIndex);
 		}
 	}
+
+	return true;
 }

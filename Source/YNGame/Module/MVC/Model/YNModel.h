@@ -26,10 +26,18 @@ public:
 	virtual void Update(float deltaTimes) override;
 	virtual FYNNodeContext& FindNodeContext(const int32 nodeId) override;
 	virtual FYNPieceContext& FindPieceContext(const int32 teamId, const int32 pieceId) override;
+	virtual FYNPieceModelCreateEvent& GetOnPieceModelCreateEvent() override;
+	virtual FYNNodeModelCreateEvent& GetOnNodeModelCreateEvent() override;
+	virtual FYNPieceModelUpdateEvent& GetOnPieceModelUpdateEvent() override;
+	virtual FYNNodeModelUpdateEvent& GetOnNodeModelUpdateEvent() override;
 
 protected:
 	TSharedPtr<FYNBoardManager> BoardMgr;
 	TSharedPtr<FYNTeamManager> TeamMgr;
 	TSharedPtr<FYNTurn> CurrentTurn;
 	TSharedPtr<FYNMoveHandler> MoveHandler;
+	FYNPieceModelCreateEvent OnPieceModelCreateEvent;
+	FYNNodeModelCreateEvent OnNodeModelCreateEvent;
+	FYNPieceModelUpdateEvent OnPieceModelUpdateEvent;
+	FYNNodeModelUpdateEvent OnNodeModelUpdateEvent;
 };

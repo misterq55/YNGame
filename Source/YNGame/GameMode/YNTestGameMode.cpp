@@ -5,29 +5,44 @@
 #include "YNGame/Module/Util/Holder/YNMVCHolder.h"
 #include "YNGame/Module/MVC/Model/YNModel.h"
 #include "YNGame/Module/MVC/Controller/YNBaseController.h"
-#include "YNGame/Module/MVC/View/YNView.h"
+#include "YNGame/Module/MVC/View/YNTestCliView.h"
 
 void AYNTestGameMode::StartPlay()
 {
 	Super::StartPlay();
 
-	FYNMVCHolder::GetInstance().SetModel(MakeShareable(new FYNModel()));
-	FYNMVCHolder::GetInstance().SetController(MakeShareable(new FYNBaseController));
-	FYNMVCHolder::GetInstance().SetView(MakeShareable(new FYNView()));
+	FYNMVCHolder& holder = FYNMVCHolder::GetInstance();
 
-	const auto& model = FYNMVCHolder::GetInstance().GetModel();
-	if (model.IsValid())
+	holder.SetModel(MakeShared<FYNModel>());
+	holder.SetController(MakeShared<FYNBaseController>());
+	holder.SetView(MakeShared<FYNTestCliView>());
+
+	const TSharedPtr<IYNModel> model = holder.GetModel();
+	if (!model.IsValid())
 	{
-		model->Initialize();
+		return;
 	}
 	
-	const auto& controller = FYNMVCHolder::GetInstance().GetController();
-	if (controller.IsValid())
+	const TSharedPtr<IYNController> controller = holder.GetController();
+	if (!controller.IsValid())
 	{
-		
+		return;
 	}
 	
-	const auto& view = FYNMVCHolder::GetInstance().GetView();
+	const TSharedPtr<IYNView> view = holder.GetView();
+	if (!view.IsValid())
+	{
+		return;
+	}
+	
+	model->Initialize();
+	controller->Initialize();
+	view->Initialize();
+	
+	model->GetOnPieceModelCreateEvent().BindSP(view.ToSharedRef(), &IYNView::CreatePieceView);
+	model->GetOnNodeModelCreateEvent().BindSP(view.ToSharedRef(), &IYNView::CreateNodeView);
+	model->GetOnPieceModelUpdateEvent().BindSP(view.ToSharedRef(), &IYNView::UpdatePieceView);
+	model->GetOnNodeModelUpdateEvent().BindSP(view.ToSharedRef(), &IYNView::UpdateNodeView);
 }
 
 void AYNTestGameMode::Tick(float DeltaSeconds)

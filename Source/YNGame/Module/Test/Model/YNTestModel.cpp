@@ -23,6 +23,8 @@ bool FYNTestModel::LoadBoard()
 	FVector lastPos = FVector::ZeroVector;
 	TSharedPtr<FYNNodeModel> lastNodeModel = nullptr;
 
+	TArray<TSharedPtr<FYNNodeModel>> nodes;
+	
 	for (int32 i = 0; i < 3; i++)
 	{
 		const FVector dir = dirs[i];
@@ -32,17 +34,42 @@ bool FYNTestModel::LoadBoard()
 			const int32 currentIndex = BoardMgr->AddNode(newPos);
 			const FYNNodeContext& currentNodeContext = BoardMgr->FindNodeContext(currentIndex);
 			TSharedPtr<FYNNodeModel> currentNode = BoardMgr->FindNode(currentIndex);
-			if (lastNodeModel.IsValid() && currentNode.IsValid())
+			if (currentNode.IsValid())
 			{
-				// lastNodeModel->NextNodeIds.Add(currentIndex);
+				lastNodeModel = currentNode;
+				nodes.Add(currentNode);
 			}
 			
 			lastPos = newPos;
 
 			OnNodeModelCreateEvent.ExecuteIfBound(currentIndex, currentNodeContext);
-
-			lastNodeModel = currentNode;
 		}
+	}
+
+	lastNodeModel->SetNodeType(E_YNNodeType::Goal);
+
+	const int nodeNum = nodes.Num();
+	for (int32 i = 0; i < nodeNum; ++i)
+	{
+		TSharedPtr<FYNNodeModel> currentNode = nodes[i];
+		if (!currentNode.IsValid())
+		{
+			continue;
+		}
+
+		TSharedPtr<FYNNodeModel> prevNode = i - 1 < 0 ?  nodes[nodeNum - 1] : nodes[i - 1];
+		if (!prevNode.IsValid())
+		{
+			continue;
+		}
+
+		TSharedPtr<FYNNodeModel> nextNode = i + 1 >= nodeNum ? nodes[0] : nodes[i + 1];
+		if (!nextNode.IsValid())
+		{
+			continue;
+		}
+
+		currentNode->ConnectNode(prevNode->GetId(), nextNode->GetId());
 	}
 	
 	return true;

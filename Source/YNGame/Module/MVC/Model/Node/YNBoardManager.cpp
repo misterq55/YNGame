@@ -13,7 +13,7 @@ FYNBoardManager::~FYNBoardManager()
 
 int32 FYNBoardManager::AddNode(const FVector& newPos)
 {
-	TSharedPtr<FYNNodeModel> newNodeModel = MakeShared<FYNNodeModel>();
+	TSharedPtr<FYNNodeModel> newNodeModel = MakeShared<FYNNodeModel>(IndexCounter);
 	newNodeModel->SetPos(newPos);
 
 	int32 currentIndex = IndexCounter;

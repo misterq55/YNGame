@@ -86,6 +86,10 @@ void FYNModel::AdvanceStep()
 	CurrentTurn->AdvanceStep();
 }
 
+// TODO
+// 착각을 하고 있었다 윷놀이는 순차적으로 말을 움직이는 게임이 아니다
+// 골인한 말이 아니라면, 필드에 있던 아직 나가지 않은 말이든 움직이는것이 가능하다
+// 그러므로, 골인한 말이 아닌 말들 중에서 선택할 수 있는 로직을 넣어야 한다
 void FYNModel::ChangeTurn()
 {
 	// TODO 턴 관련 처리

@@ -102,3 +102,8 @@ E_YNNodeType FYNNodeModel::GetNodeType() const
 {
 	return NodeType;
 }
+
+void FYNNodeModel::ConnectNode(const int32 prevNodeId, const int32 newNodeId)
+{
+	DirectionalConnections.Emplace(prevNodeId, newNodeId);
+}

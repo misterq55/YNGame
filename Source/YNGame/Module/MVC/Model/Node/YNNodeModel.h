@@ -25,7 +25,7 @@ public:
 	int32 FindNextNodeId(const int32 prevNodeId);
 	void SetNodeType(const E_YNNodeType& newNodeType);
 	E_YNNodeType GetNodeType() const;
-	// void ConnectNode();
+	void ConnectNode(const int32 prevNodeId, const int32 newNodeId);
 
 private:
 	int32 Id;

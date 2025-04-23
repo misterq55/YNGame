@@ -24,7 +24,7 @@ void FYNView::CreateNodeView(const int32 nodeId, const FYNNodeContext& nodeConte
 void FYNView::CreatePieceView(const int32 teamId, const int32 pieceId, const FYNPieceContext& pieceContext)
 {
 	TMap<int32, TSharedPtr<FYNPieceView>>& teamMap = PieceViews.FindOrAdd(teamId);
-	TSharedPtr<FYNPieceView> pieceView = MakeShared<FYNPieceView>();
+	TSharedPtr<FYNPieceView> pieceView = MakeShared<FYNPieceView>(pieceContext);
 	teamMap.Emplace(pieceId, pieceView);
 }
 

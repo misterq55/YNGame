@@ -13,7 +13,7 @@ public:
 	~FYNTeamManager();
 
 public:
-	void AddPiece(const int32 teamIndex, const int32 pieceCount)  const;
+	TArray<int32> AddPiece(const int32 teamIndex, const int32 pieceCount)  const;
 	void AddTeam(const int32 teamIndex);
 	int32 FindStartNodeId(const int32 currentTurnTeamId, const int32 currentTurnPieceId) const;
 	FYNPieceContext& GetPieceContext(const int32 teamId, const int32 pieceIndex) const;

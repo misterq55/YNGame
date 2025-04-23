@@ -25,6 +25,7 @@ public:
 	int32 FindNextNodeId(const int32 prevNodeId);
 	void SetNodeType(const E_YNNodeType& newNodeType);
 	E_YNNodeType GetNodeType() const;
+	// void ConnectNode();
 
 private:
 	int32 Id;
@@ -34,5 +35,5 @@ private:
 	TArray<int32> NextNodeIds;
 	TArray<FYNDirectionalConnection> DirectionalConnections;
 	int32 ShorcutNodeId = -1;
-	E_YNNodeType NodeType;
+	E_YNNodeType NodeType = E_YNNodeType::None;
 };

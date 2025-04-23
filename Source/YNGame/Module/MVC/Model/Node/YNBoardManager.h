@@ -11,9 +11,10 @@ public:
 	virtual ~FYNBoardManager();
 
 public:
-	void AddNode(const FVector& newPos);
+	int32 AddNode(const FVector& newPos);
 	FYNPathResult FindPath(const int32 startNodeId, const int32 steps);
 	FYNNodeContext& FindNodeContext(const int32 nodeId);
+	TSharedPtr<FYNNodeModel> FindNode(const int32 nodeId);
 	TArray<TSharedPtr<FYNNodeModel>> FindNodes(const TArray<int32>& nodeIds);
 	
 private:

@@ -7,6 +7,7 @@ class FYNNodeView
 {
 public:
 	FYNNodeView();
+	FYNNodeView(const FYNNodeContext& nodeContext);
 	~FYNNodeView();
 
 public:

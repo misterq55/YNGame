@@ -11,18 +11,22 @@ FYNTeamManager::~FYNTeamManager()
 {
 }
 
-void FYNTeamManager::AddPiece(const int32 teamIndex, const int32 pieceCount) const
+TArray<int32> FYNTeamManager::AddPiece(const int32 teamIndex, const int32 pieceCount) const
 {
+	TArray<int32> addedPieceIndice;
 	const TSharedPtr<FYNTeamModel> teamModel = FindTeamModel(teamIndex);
 	if (!teamModel.IsValid())
 	{
-		return;
+		return TArray<int32>();
 	}
 	
 	for (int32 i = 0; i < pieceCount; ++i)
 	{
-		teamModel->AddPiece();
+		const int32 addedIndex = teamModel->AddPiece();
+		addedPieceIndice.Emplace(addedIndex);
 	}
+
+	return MoveTemp(addedPieceIndice);
 }
 
 void FYNTeamManager::AddTeam(const int32 teamIndex)

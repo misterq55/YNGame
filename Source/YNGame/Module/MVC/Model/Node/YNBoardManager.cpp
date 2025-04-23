@@ -11,11 +11,15 @@ FYNBoardManager::~FYNBoardManager()
 {
 }
 
-void FYNBoardManager::AddNode(const FVector& newPos)
+int32 FYNBoardManager::AddNode(const FVector& newPos)
 {
-	TSharedPtr<FYNNodeModel> newNodeModel = MakeShareable(new FYNNodeModel());
+	TSharedPtr<FYNNodeModel> newNodeModel = MakeShared<FYNNodeModel>();
 	newNodeModel->SetPos(newPos);
-	NodeModels[IndexCounter++] = newNodeModel;
+
+	int32 currentIndex = IndexCounter;
+	NodeModels.Emplace(IndexCounter++, newNodeModel);
+
+	return currentIndex;
 }
 
 FYNPathResult FYNBoardManager::FindPath(const int32 startNodeId, const int32 steps)
@@ -75,6 +79,16 @@ FYNNodeContext& FYNBoardManager::FindNodeContext(const int32 nodeId)
 
 	static FYNNodeContext nullNodeContext;
 	return nullNodeContext;
+}
+
+TSharedPtr<FYNNodeModel> FYNBoardManager::FindNode(const int32 nodeId)
+{
+	if (const TSharedPtr<FYNNodeModel>* foundNodeModel = NodeModels.Find(nodeId))
+	{
+		return (*foundNodeModel);
+	}
+
+	return nullptr;
 }
 
 TArray<TSharedPtr<FYNNodeModel>> FYNBoardManager::FindNodes(const TArray<int32>& nodeIds)

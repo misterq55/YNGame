@@ -15,16 +15,16 @@ void FYNView::Initialize()
 {
 }
 
-void FYNView::CreateNodeView(const int32 nodeId)
+void FYNView::CreateNodeView(const int32 nodeId, const FYNNodeContext& nodeContext)
 {
-	TSharedPtr<FYNNodeView> nodeView = MakeShareable(new FYNNodeView());
+	TSharedPtr<FYNNodeView> nodeView = MakeShared<FYNNodeView>(nodeContext);
 	NodeViews.Emplace(nodeId, nodeView);
 }
 
-void FYNView::CreatePieceView(const int32 teamId, const int32 pieceId)
+void FYNView::CreatePieceView(const int32 teamId, const int32 pieceId, const FYNPieceContext& pieceContext)
 {
 	TMap<int32, TSharedPtr<FYNPieceView>>& teamMap = PieceViews.FindOrAdd(teamId);
-	TSharedPtr<FYNPieceView> pieceView = MakeShareable(new FYNPieceView());
+	TSharedPtr<FYNPieceView> pieceView = MakeShared<FYNPieceView>();
 	teamMap.Emplace(pieceId, pieceView);
 }
 

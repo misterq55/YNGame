@@ -18,26 +18,30 @@ FYNModel::~FYNModel()
 
 void FYNModel::Initialize()
 {
-	BoardMgr = MakeShareable(new FYNBoardManager());
-	TeamMgr = MakeShareable(new FYNTeamManager());
-	CurrentTurn = MakeShareable(new FYNTurn());
-	MoveHandler = MakeShareable(new FYNMoveHandler());
+	BoardMgr = MakeShared<FYNBoardManager>();
+	TeamMgr = MakeShared<FYNTeamManager>();
+	CurrentTurn = MakeShared<FYNTurn>();
+	MoveHandler = MakeShared<FYNMoveHandler>();
 
-	if (TeamMgr.IsValid())
+	if (!TeamMgr.IsValid())
 	{
-		// TODO 팀 최대 말 수 입력할 수 있도록
+		return;
 	}
 	
-	if (CurrentTurn.IsValid())
+	if (!CurrentTurn.IsValid())
 	{
-		CurrentTurn->Initialize();
+		return;	
+	}
+	
+	CurrentTurn->Initialize();
+
+	if (!MoveHandler.IsValid())
+	{
+		return;
 	}
 
-	if (MoveHandler.IsValid())
-	{
-		auto& moveEndEvent = MoveHandler->GetMoveEndEvent();
-		moveEndEvent.BindRaw(this, &FYNModel::OnMoveEnd);
-	}
+	auto& moveEndEvent = MoveHandler->GetMoveEndEvent();
+	moveEndEvent.BindRaw(this, &FYNModel::OnMoveEnd);
 }
 
 void FYNModel::AddNode(const FVector& newPos)
@@ -55,7 +59,13 @@ void FYNModel::AddTeams(const int32 teamCount, const int32 pieceCount)
 		for (int32 i = 0; i < teamCount; ++i)
 		{
 			TeamMgr->AddTeam(i);
-			TeamMgr->AddPiece(i, pieceCount);
+			TArray<int32> addedIndice = TeamMgr->AddPiece(i, pieceCount);
+
+			for (const int32 addedIndex : addedIndice)
+			{
+				const FYNPieceContext& pieceContext = FindPieceContext(i, addedIndex);
+				OnPieceModelCreateEvent.ExecuteIfBound(i, addedIndex, pieceContext);
+			}
 		}
 	}
 }
@@ -247,6 +257,16 @@ void FYNModel::Update(float deltaTimes)
 			OnPieceModelUpdateEvent.ExecuteIfBound(currentTurnTeamId, currentPieceId, pieceContext);
 		}
 	}
+}
+
+bool FYNModel::LoadBoard()
+{
+	if (!BoardMgr.IsValid())
+	{
+		return false;
+	}
+
+	return true;
 }
 
 FYNNodeContext& FYNModel::FindNodeContext(const int32 nodeId)

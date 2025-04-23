@@ -4,6 +4,10 @@ FYNPieceView::FYNPieceView()
 {
 }
 
+FYNPieceView::FYNPieceView(const FYNPieceContext& pieceContext)
+{
+}
+
 FYNPieceView::~FYNPieceView()
 {
 }

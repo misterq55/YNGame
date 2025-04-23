@@ -13,7 +13,7 @@ public:
 
 public:
 	void Move(const int32 currentPieceId, const FYNPathResult& path);
-	void AddPiece();
+	int32 AddPiece();
 	int32 FindCurrentNodeId(const int32 currentPieceId) const;
 	FYNPieceContext& FindPieceContext(const int32 currentPieceId);
 	TSharedPtr<FYNPieceModel> FindPieceModel(const int32 currentPieceId) const;

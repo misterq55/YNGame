@@ -3,9 +3,9 @@
 
 #include "YNTestGameMode.h"
 #include "YNGame/Module/Util/Holder/YNMVCHolder.h"
-#include "YNGame/Module/MVC/Model/YNModel.h"
+#include "YNGame/Module/Test/Model/YNTestModel.h"
 #include "YNGame/Module/MVC/Controller/YNBaseController.h"
-#include "YNGame/Module/MVC/View/YNTestCliView.h"
+#include "YNGame/Module/Test/View/YNTestCliView.h"
 
 AYNTestGameMode::AYNTestGameMode()
 {
@@ -18,7 +18,7 @@ void AYNTestGameMode::StartPlay()
 
 	FYNMVCHolder& holder = FYNMVCHolder::GetInstance();
 
-	holder.SetModel(MakeShared<FYNModel>());
+	holder.SetModel(MakeShared<FYNTestModel>());
 	holder.SetController(MakeShared<FYNBaseController>());
 	holder.SetView(MakeShared<FYNTestCliView>());
 
@@ -51,6 +51,8 @@ void AYNTestGameMode::StartPlay()
 
 	// TODO
 	// 피스와 노드 생성 로직 추가
+	model->LoadBoard();
+	model->AddTeams(2, 4);
 }
 
 void AYNTestGameMode::Tick(float DeltaSeconds)

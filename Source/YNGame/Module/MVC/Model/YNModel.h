@@ -24,6 +24,7 @@ public:
 	virtual void OnMoveEnd(const int32 nodeId, const FYNPieceIndex& pieceIndex) override;
 	virtual bool IsRepeat() override;
 	virtual void Update(float deltaTimes) override;
+	virtual bool LoadBoard() override;
 	virtual FYNNodeContext& FindNodeContext(const int32 nodeId) override;
 	virtual FYNPieceContext& FindPieceContext(const int32 teamId, const int32 pieceId) override;
 	virtual FYNPieceModelCreateEvent& GetOnPieceModelCreateEvent() override;
@@ -41,3 +42,5 @@ protected:
 	FYNPieceModelUpdateEvent OnPieceModelUpdateEvent;
 	FYNNodeModelUpdateEvent OnNodeModelUpdateEvent;
 };
+
+

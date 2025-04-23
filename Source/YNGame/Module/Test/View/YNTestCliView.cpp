@@ -12,12 +12,14 @@ void FYNTestCliView::Initialize()
 {
 }
 
-void FYNTestCliView::CreateNodeView(const int32 nodeId)
+void FYNTestCliView::CreateNodeView(const int32 nodeId, const FYNNodeContext& nodeContext)
 {
+	int32 temp = 0;
 }
 
-void FYNTestCliView::CreatePieceView(const int32 teamId, const int32 pieceId)
+void FYNTestCliView::CreatePieceView(const int32 teamId, const int32 pieceId, const FYNPieceContext& pieceContext)
 {
+	int32 temp = 0;
 }
 
 void FYNTestCliView::UpdateNodeView(const int32 nodeId, const FYNNodeContext& nodeContext)

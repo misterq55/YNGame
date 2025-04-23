@@ -7,6 +7,7 @@ class FYNPieceView
 {
 public:
 	FYNPieceView();
+	FYNPieceView(const FYNPieceContext& pieceContext); 
 	~FYNPieceView();
 
 public:

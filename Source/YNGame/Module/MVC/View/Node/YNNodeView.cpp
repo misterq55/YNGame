@@ -4,6 +4,10 @@ FYNNodeView::FYNNodeView()
 {
 }
 
+FYNNodeView::FYNNodeView(const FYNNodeContext& nodeContext)
+{
+}
+
 FYNNodeView::~FYNNodeView()
 {
 }

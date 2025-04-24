@@ -54,20 +54,30 @@ void FYNModel::AddNode(const FVector& newPos)
 
 void FYNModel::AddTeams(const int32 teamCount, const int32 pieceCount)
 {
-	if (TeamMgr.IsValid())
+	if (!TeamMgr.IsValid())
 	{
-		for (int32 i = 0; i < teamCount; ++i)
-		{
-			TeamMgr->AddTeam(i);
-			TArray<int32> addedIndice = TeamMgr->AddPiece(i, pieceCount);
+		return;
+	}
 
-			for (const int32 addedIndex : addedIndice)
-			{
-				const FYNPieceContext& pieceContext = FindPieceContext(i, addedIndex);
-				OnPieceModelCreateEvent.ExecuteIfBound(i, addedIndex, pieceContext);
-			}
+	if (!CurrentTurn.IsValid())
+	{
+		return;
+	}
+
+	for (int32 i = 0; i < teamCount; ++i)
+	{
+		TeamMgr->AddTeam(i);
+		TArray<int32> addedPieceIndice = TeamMgr->AddPiece(i, pieceCount);
+
+		for (const int32 addedPieceIndex : addedPieceIndice)
+		{
+			const FYNPieceContext& pieceContext = FindPieceContext(i, addedPieceIndex);
+			OnPieceModelCreateEvent.ExecuteIfBound(i, addedPieceIndex, pieceContext);
 		}
 	}
+
+	CurrentTurn->SetMaxTeamCount(teamCount);
+	CurrentTurn->SetMaxPieceCount(pieceCount);
 }
 
 void FYNModel::AddTeam()
@@ -104,16 +114,20 @@ void FYNModel::ChangeTurn()
 	}
 
 	CurrentTurn->ChangeTurn();
-	CurrentTurn->ChangePiece();
-	
-	const int32 currentTurnTeamId = CurrentTurn->GetTurnOwnerTeamId();
-	int32 currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
 
-	// 루프로 현재 사용 가능한 말을 찾는다
-	while (TeamMgr->CheckCurrentPieceMovable(currentTurnTeamId, currentPieceId))
+	// TODO 아래 블록을 "말을 선택할 수 있도록" 수정해야함
 	{
 		CurrentTurn->ChangePiece();
-		currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
+	
+		const int32 currentTurnTeamId = CurrentTurn->GetTurnOwnerTeamId();
+		int32 currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
+
+		// 루프로 현재 사용 가능한 말을 찾는다
+		while (TeamMgr->CheckCurrentPieceMovable(currentTurnTeamId, currentPieceId))
+		{
+			CurrentTurn->ChangePiece();
+			currentPieceId = CurrentTurn->GetTurnOwnerPieceId();
+		}
 	}
 }
 

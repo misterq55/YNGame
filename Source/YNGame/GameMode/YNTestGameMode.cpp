@@ -4,7 +4,7 @@
 #include "YNTestGameMode.h"
 #include "YNGame/Module/Util/Holder/YNMVCHolder.h"
 #include "YNGame/Module/Test/Model/YNTestModel.h"
-#include "YNGame/Module/MVC/Controller/YNBaseController.h"
+#include "YNGame/Module/Test/Controller/YNTestController.h"
 #include "YNGame/Module/Test/View/YNTestCliView.h"
 
 AYNTestGameMode::AYNTestGameMode()
@@ -19,7 +19,7 @@ void AYNTestGameMode::StartPlay()
 	FYNMVCHolder& holder = FYNMVCHolder::GetInstance();
 
 	holder.SetModel(MakeShared<FYNTestModel>());
-	holder.SetController(MakeShared<FYNBaseController>());
+	holder.SetController(MakeShared<FYNTestController>());
 	holder.SetView(MakeShared<FYNTestCliView>());
 
 	const TSharedPtr<IYNModel> model = holder.GetModel();

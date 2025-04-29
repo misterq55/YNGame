@@ -53,6 +53,8 @@ void AYNTestGameMode::StartPlay()
 	// 피스와 노드 생성 로직 추가
 	model->LoadBoard();
 	model->AddTeams(2, 4);
+
+	controller->ChangeGameState();
 }
 
 void AYNTestGameMode::Tick(float DeltaSeconds)

@@ -3,6 +3,15 @@
 class FYNPieceModel;
 class FYNNodeModel;
 
+enum class E_YNGameState : uint8
+{
+	None,
+	OrderSelection,
+	Game,
+	End,
+	_Max,
+};
+
 enum class E_YNPieceState : uint8
 {
 	None,
@@ -23,7 +32,7 @@ enum class E_YNNodeType : uint8
 	_Max,
 };
 
-enum class E_KStepState : uint8
+enum class E_YNStepState : uint8
 {
 	None,
 	RollYut,

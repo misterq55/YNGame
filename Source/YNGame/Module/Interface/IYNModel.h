@@ -1,6 +1,7 @@
 ﻿#pragma once
+#include "YNGame/YNGameDefine.h"
 
-enum class E_KStepState : uint8;
+enum class E_YNStepState : uint8;
 struct FYNNodeContext;
 struct FYNPieceContext;
 struct FYNPieceIndex;
@@ -18,7 +19,9 @@ public:
 	virtual void AddTeam() = 0;
 	virtual void AdvanceStep() = 0;
 	virtual void ChangeTurn() = 0;
-	virtual E_KStepState GetCurrentStepState() = 0;
+	virtual void ChangeGameState() = 0;
+	virtual E_YNGameState GetCurrentGameState() = 0;
+	virtual E_YNStepState GetCurrentStepState() = 0;
 	virtual void Move(const int32 steps) = 0;
 	virtual void OnMoveEnd(const int32 nodeId, const FYNPieceIndex& pieceIndex) = 0;
 	virtual bool IsRepeat() = 0;

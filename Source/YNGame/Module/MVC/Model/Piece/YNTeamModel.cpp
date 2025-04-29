@@ -27,8 +27,8 @@ void FYNTeamModel::Move(const int32 currentPieceId, const FYNPathResult& path)
 
 int32 FYNTeamModel::AddPiece()
 {
-	TSharedPtr<FYNPieceModel> pieceModel = MakeShareable(new FYNPieceModel(Id, PieceIndexCounter));
-	int32 addedIndex = PieceIndexCounter;
+	TSharedPtr<FYNPieceModel> pieceModel = MakeShared<FYNPieceModel>(Id, PieceIndexCounter);
+	const int32 addedIndex = PieceIndexCounter;
 	if (pieceModel.IsValid())
 	{
 		pieceModel->Initialize();

@@ -131,11 +131,23 @@ void FYNModel::ChangeTurn()
 	}
 }
 
-E_KStepState FYNModel::GetCurrentStepState()
+void FYNModel::ChangeGameState()
+{
+	const int32 currentGameStateValue = static_cast<int32>(CurrentGameState);
+	const int32 nextGameStateValue = (currentGameStateValue + 1) % static_cast<int32>(E_YNGameState::_Max);
+	CurrentGameState = static_cast<E_YNGameState>(nextGameStateValue);
+}
+
+E_YNGameState FYNModel::GetCurrentGameState()
+{
+	return CurrentGameState;
+}
+
+E_YNStepState FYNModel::GetCurrentStepState()
 {
 	if (!CurrentTurn.IsValid())
 	{
-		return E_KStepState::None;
+		return E_YNStepState::None;
 	}
 
 	return CurrentTurn->GetStepState();

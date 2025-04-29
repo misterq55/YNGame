@@ -4,7 +4,7 @@
 #include "YNGame/YNGameDefine.h"
 
 FYNTurn::FYNTurn()
-	:StepState(E_KStepState::None)
+	:StepState(E_YNStepState::None)
 {
 }
 
@@ -14,14 +14,19 @@ FYNTurn::~FYNTurn()
 
 void FYNTurn::Initialize()
 {
-	StepState = E_KStepState::None;
-	TurnStateFSM = MakeShareable(new FYNTurnStateFSM());
+	StepState = E_YNStepState::None;
+	TurnStateFSM = MakeShared<FYNTurnStateFSM>();
 }
 
 void FYNTurn::ChangeTurn()
 {
-	TurnOwnerTeamId++;
-	TurnOwnerTeamId %= MaxTeamCount;
+	TeamOrderIndex++;
+	TeamOrderIndex %= MaxTeamCount;
+
+	if (TeamOrders.IsValidIndex(TeamOrderIndex))
+	{
+		TurnOwnerTeamId = TeamOrders[TeamOrderIndex];
+	}
 }
 
 void FYNTurn::ChangePiece()
@@ -44,7 +49,7 @@ void FYNTurn::SetMaxPieceCount(const int pieceCount)
 	MaxPieceCount = pieceCount;
 }
 
-void FYNTurn::ChangeStepState(const E_KStepState& newState)
+void FYNTurn::ChangeStepState(const E_YNStepState& newState)
 {
 	StepState = newState;
 }
@@ -53,9 +58,9 @@ void FYNTurn::AdvanceStep()
 {
 	int32 stepValue = static_cast<int32>(StepState);
 	stepValue++;
-	stepValue %= static_cast<int32>(E_KStepState::_Max);
+	stepValue %= static_cast<int32>(E_YNStepState::_Max);
 
-	StepState = static_cast<E_KStepState>(stepValue);
+	StepState = static_cast<E_YNStepState>(stepValue);
 }
 
 int32 FYNTurn::GetTurnOwnerTeamId() const
@@ -73,7 +78,12 @@ int32 FYNTurn::GetTurnOwnerPieceId() const
 	return TurnOwnerPieceIds[TurnOwnerTeamId];
 }
 
-E_KStepState FYNTurn::GetStepState() const
+E_YNStepState FYNTurn::GetStepState() const
 {
 	return StepState;
+}
+
+void FYNTurn::SetTeamOrder(const TArray<int>& teamOrders)
+{
+	TeamOrders = teamOrders;
 }

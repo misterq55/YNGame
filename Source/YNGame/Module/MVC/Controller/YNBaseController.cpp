@@ -31,6 +31,17 @@ void FYNBaseController::Move(const int32 steps)
 	model->Move(steps);
 }
 
+void FYNBaseController::ChangeGameState()
+{
+	const auto& model = FYNMVCHolder::GetInstance().GetModel();
+	if (!model.IsValid())
+	{
+		return;
+	}
+
+	model->ChangeGameState();
+}
+
 void FYNBaseController::ChangeTurn()
 {
 	const auto& model = FYNMVCHolder::GetInstance().GetModel();

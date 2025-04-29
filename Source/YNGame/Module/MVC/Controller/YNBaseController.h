@@ -12,6 +12,7 @@ public:
 	virtual void Initialize() override;
 	virtual int32 RollYut() override;
 	virtual void Move(const int32 steps) override;
+	virtual void ChangeGameState() override;
 	virtual void ChangeTurn() override;
 	virtual void AdvanceStep() override;
 	virtual void AddComponent(const FName& name, const TSharedPtr<FYNControllerComponent>& newComponent) override;

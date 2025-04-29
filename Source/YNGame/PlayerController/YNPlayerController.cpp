@@ -29,7 +29,7 @@ bool AYNPlayerController::ProcessConsoleExec(const TCHAR* Cmd, FOutputDevice& Ar
 		return false;
 	}
 
-	if (model->GetCurrentStepState() == E_KStepState::RollYut)
+	if (model->GetCurrentStepState() == E_YNStepState::RollYut)
 	{
 		if (CommandString == TEXT("RollYut"))
 		{
